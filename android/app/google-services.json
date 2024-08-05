@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "416592857912",
+    "project_id": "watch-hub-6810e",
+    "storage_bucket": "watch-hub-6810e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416592857912:android:6f9046a88cdfe2ea8d8fcd",
+        "android_client_info": {
+          "package_name": "com.app.watch_hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDl6sev6AC1oz893_BuTNNWP5cE2tAE1F4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
