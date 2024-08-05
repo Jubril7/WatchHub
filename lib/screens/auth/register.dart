@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:watch_hub/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function? toggleView;
-  const SignIn({this.toggleView, super.key});
-
+  const Register({this.toggleView, super.key});
   @override
-  State<SignIn> createState() => _SignInState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
-
   final _formKey = GlobalKey<FormState>();
 
-  //text field state
   String email = '';
   String password = '';
   String error = '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,18 +22,19 @@ class _SignInState extends State<SignIn> {
         appBar: AppBar(
           backgroundColor: Colors.brown[400],
           elevation: 0.0,
-          title: const Text("Sign in to Watch Hub"),
+          title: const Text("Sign Up to Watch Hub"),
           actions: <Widget>[
             TextButton.icon(
-                onPressed: () {
-                  widget.toggleView!();
-                },
-                label: const Text("Register",
-                    style: TextStyle(color: Colors.white)),
-                icon: const Icon(
-                  Icons.person,
-                  color: Colors.white,
-                ))
+              onPressed: () {
+                widget.toggleView!();
+              },
+              label:
+                  const Text("Sign In", style: TextStyle(color: Colors.white)),
+              icon: const Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+            )
           ],
         ),
         body: SingleChildScrollView(
@@ -112,17 +109,17 @@ class _SignInState extends State<SignIn> {
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.green),
                                   child: const Text(
-                                    "Sign In",
+                                    "Register",
                                     style: TextStyle(color: Colors.white),
                                   ),
                                   onPressed: () async {
                                     if (_formKey.currentState!.validate()) {
                                       dynamic result = await _auth
-                                          .signInWithEmailAndPassword(
+                                          .registerWithEmailAndPassword(
                                               email, password);
                                       if (result == null) {
                                         setState(() => error =
-                                            'Could not sign in with those credentials');
+                                            'Please supply a valid email');
                                       }
                                     }
                                   },
