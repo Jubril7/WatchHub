@@ -14,21 +14,24 @@ class Watch {
   final String? descImg2;
   final String? descImg3;
   final List? images;
+  final List<dynamic>? reviews;
 
-  Watch(
-      {this.id,
-      this.brand,
-      this.model,
-      this.type,
-      this.popularity,
-      this.price,
-      this.image,
-      this.description,
-      this.resistance,
-      this.material,
-      this.color,
-      this.descImg1,
-      this.descImg2,
-      this.descImg3,
-      this.images});
+  Watch({
+    this.id,
+    this.brand,
+    this.model,
+    this.type,
+    this.popularity,
+    this.price,
+    this.image,
+    this.description,
+    this.resistance,
+    this.material,
+    this.color,
+    this.descImg1,
+    this.descImg2,
+    this.descImg3,
+    this.images,
+    this.reviews,
+  });
 }

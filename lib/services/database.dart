@@ -119,25 +119,53 @@ class DatabaseService {
   // }
 
   //watch list from snapshot
+  Future addUserReview(
+      double userStarRating, String userReview, String docId) async {
+    final now = DateTime.now();
+    DateTime dateOptions = DateTime(now.year, now.month, now.day);
+    final date = dateOptions.toString().replaceAll("00:00:00.000", "");
+    print("date is $date");
+    User? user = auth.currentUser;
+    DocumentSnapshot<Map<String, dynamic>> userName = await FirebaseFirestore
+        .instance
+        .collection("Users")
+        .doc(user!.uid)
+        .get();
+
+    DocumentReference watch_item =
+        await FirebaseFirestore.instance.collection("watch_hub").doc(docId);
+
+    watch_item.update({
+      "reviews": FieldValue.arrayUnion([
+        {
+          "name": userName.data()!['fullName'],
+          "review": userReview,
+          "stars": userStarRating,
+          "time": date.toString().replaceAll(" ", ""),
+        }
+      ])
+    });
+  }
+
   List<Watch> _watchListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return Watch(
-        id: doc['id'] ?? '',
-        brand: doc['brand'] ?? '',
-        model: doc['model'] ?? '',
-        type: doc['type'] ?? '',
-        popularity: doc['popularity'] ?? 0,
-        price: doc['price'].toString(),
-        image: doc['image'] ?? '',
-        description: doc['description'] ?? '',
-        resistance: doc['resistance'] ?? '',
-        material: doc['material'] ?? '',
-        color: doc['color'] ?? '',
-        descImg1: doc['desc_img1'] ?? '',
-        descImg2: doc['desc_img2'] ?? '',
-        descImg3: doc['desc_img3'] ?? '',
-        images: doc['images'] ?? [],
-      );
+          id: doc['id'] ?? '',
+          brand: doc['brand'] ?? '',
+          model: doc['model'] ?? '',
+          type: doc['type'] ?? '',
+          popularity: doc['popularity'] ?? 0,
+          price: doc['price'].toString(),
+          image: doc['image'] ?? '',
+          description: doc['description'] ?? '',
+          resistance: doc['resistance'] ?? '',
+          material: doc['material'] ?? '',
+          color: doc['color'] ?? '',
+          descImg1: doc['desc_img1'] ?? '',
+          descImg2: doc['desc_img2'] ?? '',
+          descImg3: doc['desc_img3'] ?? '',
+          images: doc['images'] ?? [],
+          reviews: doc['reviews'] ?? []);
     }).toList();
   }
 

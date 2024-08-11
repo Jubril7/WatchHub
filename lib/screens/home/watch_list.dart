@@ -27,7 +27,19 @@ class _WatchListState extends State<WatchList> {
     //   },
     // );
     if (watches.isEmpty) {
-      return Center();
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.network(
+                'https://firebasestorage.googleapis.com/v0/b/watch-hub-6810e.appspot.com/o/not-found-removebg-preview.png?alt=media&token=c98edcd3-07e1-4016-b510-a34bdd687fae'),
+            const Text(
+              "Item Not Found",
+              style: TextStyle(fontSize: 30.0),
+            )
+          ],
+        ),
+      );
     } else {
       return SizedBox(
           width: double.maxFinite,

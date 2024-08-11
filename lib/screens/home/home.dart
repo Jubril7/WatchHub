@@ -117,7 +117,7 @@ class _HomeState extends State<Home> {
                     },
                   )),
               ListTile(
-                title: Text("Promotions"),
+                title: Text("ADD ORDER BY PRICE AND POPULARITY HERE"),
                 leading: Icon(Icons.local_offer),
               ),
             ],
@@ -128,12 +128,17 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.brown[400],
           elevation: 0.0,
           actions: <Widget>[
-            TextButton.icon(
-              icon: Icon(Icons.person),
-              label: Text("Logout"),
-              onPressed: () async {
-                await _auth.signOut();
-              },
+            Row(
+              children: [
+                IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+                TextButton.icon(
+                  icon: Icon(Icons.person),
+                  label: Text("Logout"),
+                  onPressed: () async {
+                    await _auth.signOut();
+                  },
+                ),
+              ],
             )
           ],
         ),
