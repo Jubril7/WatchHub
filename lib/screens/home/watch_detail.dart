@@ -95,7 +95,10 @@ class _WatchDetailState extends State<WatchDetail> {
                 width: double.maxFinite,
                 child: Text(
                   "\$${watch.price!}",
-                  style: TextStyle(fontSize: 23.0),
+                  style: const TextStyle(
+                      fontSize: 23.0,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 181, 61, 53)),
                 ),
               ),
             ),
@@ -196,17 +199,24 @@ class _WatchDetailState extends State<WatchDetail> {
             const SizedBox(
               height: 50,
             ),
-            const SizedBox(
-                width: double.maxFinite,
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Description",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          top: BorderSide(color: Colors.black),
+                          bottom: BorderSide(color: Colors.black))),
+                  width: double.maxFinite,
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Description",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  )),
+            ),
             Container(
-              color: Colors.grey[300],
               child: Column(
                 children: [
                   Padding(
@@ -222,15 +232,23 @@ class _WatchDetailState extends State<WatchDetail> {
             const SizedBox(
               height: 50,
             ),
-            Container(
-                width: double.maxFinite,
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Specifications",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          top: BorderSide(color: Colors.black),
+                          bottom: BorderSide(color: Colors.black))),
+                  width: double.maxFinite,
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Specifications",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  )),
+            ),
             Container(
               width: double.maxFinite,
               child: Padding(
@@ -279,15 +297,23 @@ class _WatchDetailState extends State<WatchDetail> {
             const SizedBox(
               height: 50,
             ),
-            Container(
-                width: double.maxFinite,
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Reviews",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                  decoration: const BoxDecoration(
+                      border: Border(
+                          top: BorderSide(color: Colors.black),
+                          bottom: BorderSide(color: Colors.black))),
+                  width: double.maxFinite,
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Reviews",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  )),
+            ),
             SizedBox(
               width: double.maxFinite,
               child: Padding(
