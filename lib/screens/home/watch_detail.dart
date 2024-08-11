@@ -64,7 +64,11 @@ class _WatchDetailState extends State<WatchDetail> {
                     ),
                   );
                 }).toList(),
-                options: CarouselOptions(height: 300),
+                options: CarouselOptions(
+                    height: 300,
+                    viewportFraction: 1.0,
+                    enlargeCenterPage: false,
+                    autoPlay: true),
               ),
             ),
             Padding(
