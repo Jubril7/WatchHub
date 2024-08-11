@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:watch_hub/screens/wrapper.dart';
 import 'package:watch_hub/services/auth.dart';
 import 'package:watch_hub/models/user.dart';
+import 'package:watch_hub/screens/home/watch_detail.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,8 +20,10 @@ class MainApp extends StatelessWidget {
     return StreamProvider<UserDetails?>.value(
       initialData: null,
       value: AuthService().user,
-      child:
-          const MaterialApp(debugShowCheckedModeBanner: false, home: Wrapper()),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          routes: {'/watch_details': (context) => const WatchDetail()},
+          home: const Wrapper()),
     );
   }
 }
