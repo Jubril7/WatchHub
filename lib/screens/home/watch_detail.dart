@@ -335,29 +335,22 @@ class _WatchDetailState extends State<WatchDetail> {
                             watch.reviews![index]['review'],
                             style: const TextStyle(fontSize: 20),
                           ),
-                          RatingBar(
+                          RatingBar.builder(
+                            allowHalfRating: true,
                             ignoreGestures: true,
                             itemSize: 19,
                             initialRating: rating,
-                            ratingWidget: RatingWidget(
-                                empty: const Icon(
-                                  Icons.star,
-                                ),
-                                half: const Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                full: const Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                )),
+                            itemBuilder: (context, index) => const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
                             onRatingUpdate: (value) => print(value),
                           )
                         ],
                       ),
                       trailing: Text(
                         watch.reviews![index]['time'],
-                        style: TextStyle(fontSize: 17),
+                        style: const TextStyle(fontSize: 17),
                       ),
                     );
                   },
@@ -394,20 +387,13 @@ class _WatchDetailState extends State<WatchDetail> {
                       )),
                   Container(
                     width: double.maxFinite,
-                    child: RatingBar(
+                    child: RatingBar.builder(
+                        allowHalfRating: true,
                         itemSize: 30,
-                        ratingWidget: RatingWidget(
-                            empty: const Icon(
-                              Icons.star,
-                            ),
-                            half: const Icon(
+                        itemBuilder: (context, _) => const Icon(
                               Icons.star,
                               color: Colors.amber,
                             ),
-                            full: const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            )),
                         onRatingUpdate: (value) => setState(() {
                               userStarRating = value;
                             })),
