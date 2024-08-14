@@ -1,9 +1,11 @@
-class Cart {
+import 'package:flutter/material.dart';
+
+class Cart extends ChangeNotifier {
   final String? brand;
   final String? model;
-  final String? price;
+  final int? price;
   final String? image;
-  final int? quantity;
+  int? quantity;
 
   Cart({
     this.brand,

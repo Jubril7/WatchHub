@@ -1,4 +1,6 @@
-class Watch {
+import 'package:flutter/material.dart';
+
+class Watch extends ChangeNotifier {
   final String? id;
   final String? brand;
   final String? model;

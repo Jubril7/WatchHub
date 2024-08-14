@@ -23,14 +23,8 @@ class DatabaseService {
   final CollectionReference watch_list =
       FirebaseFirestore.instance.collection("watch_hub");
 
-  final CollectionReference cart =
-      FirebaseFirestore.instance.collection("Cart");
-
-  // dynamic brand = "Longines";
-  // dynamic model = "Aviation Big Eye";
-
-  // watch_list.where(Filter.and(Filter("brand", isEqualTo: "Longines"),
-  //     Filter("id", isEqualTo: true), Filter("type", isEqualTo: "Analog")));
+  final DocumentReference<Map<String, dynamic>> cart =
+      FirebaseFirestore.instance.collection("Cart").doc(user!.uid);
 
   Future setUserData(
       String email, String address, String fullName, String phone) async {
@@ -47,6 +41,7 @@ class DatabaseService {
     String brand,
     int quantity,
     int price,
+    String image,
   ) async {
     try {
       User? user = auth.currentUser;
@@ -58,19 +53,46 @@ class DatabaseService {
       DocumentReference docRef =
           FirebaseFirestore.instance.collection("Cart").doc(user.uid);
 
-      // await cart.doc(user!.uid).set({
-      //   "cart": FieldValue.arrayUnion([
-      //     {
-      //       "brand": brand,
-      //       "model": model,
-      //       "quantity": quantity,
-      //       "price": price,
-      //     }
-      //   ])
-      // }, SetOptions(merge: true));
+      await cart.set({
+        "cart": FieldValue.arrayUnion([
+          {
+            "brand": brand,
+            "model": model,
+            "quantity": quantity,
+            "price": price,
+            "image": image,
+          }
+        ])
+      }, SetOptions(merge: true));
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  void increaseCartQuantity(String model, String brand, String image, int price,
+      int? initialQuantity, int newQuantity) {
+    cart.update({
+      "cart": FieldValue.arrayUnion([
+        {
+          "brand": brand,
+          "image": image,
+          "model": model,
+          "price": price,
+          "quantity": newQuantity,
+        }
+      ])
+    });
+    cart.update({
+      "cart": FieldValue.arrayRemove([
+        {
+          "brand": brand,
+          "image": image,
+          "model": model,
+          "price": price,
+          "quantity": initialQuantity,
+        }
+      ])
+    });
   }
 
   Future<bool> getBool(String model) async {
@@ -105,18 +127,26 @@ class DatabaseService {
     return false;
   }
 
-  //cart list from snapshot
-  // List<Cart> _cartFromSnapshot(QuerySnapshot snapshot) {
-  //   return snapshot.docs.map((doc) {
-  //     return Cart(
-  //       brand: doc['brand'] ?? '',
-  //       model: doc['model'] ?? '',
-  //       price: doc['price'] ?? '',
-  //       image: doc['image'] ?? '',
-  //       quantity: doc['quantity'] ?? '',
-  //     );
-  //   }).toList();
-  // }
+  // cart list from snapshot
+  List<Cart> _cartFromSnapshot(
+      DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    List docs = [];
+    List docs1 = [];
+    docs.add(snapshot.data()!);
+    docs1 = docs[0]['cart'];
+    print("docs1 says $docs1");
+
+    return docs1.map((doc) {
+      print("cart brand is ${doc['brand']}");
+      return Cart(
+        brand: doc['brand'] ?? '',
+        model: doc['model'] ?? '',
+        price: doc['price'] ?? 0,
+        image: doc['image'] ?? '',
+        quantity: doc['quantity'] ?? 0,
+      );
+    }).toList();
+  }
 
   //watch list from snapshot
   Future addUserReview(
@@ -193,8 +223,7 @@ class DatabaseService {
     return filter.snapshots().map(_watchListFromSnapshot);
   }
 
-//   Stream<List<Cart>> get carts {
-//     return cart.snapshots().map(_cartFromSnapshot);
-//   }
-// }
+  Stream<List<Cart>> get carts {
+    return cart.snapshots().map(_cartFromSnapshot);
+  }
 }

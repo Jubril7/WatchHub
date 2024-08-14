@@ -14,10 +14,10 @@ class _WatchListState extends State<WatchList> {
   @override
   Widget build(BuildContext context) {
     final watches = Provider.of<List<Watch>>(context);
+    print("watch model is $watches");
+
     watches.forEach((watch) {
-      print(watch.model);
-      print(watch.type);
-      print(watch.price);
+      print("rolaaa $watch");
     });
 
     // return ListView.builder(

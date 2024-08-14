@@ -4,6 +4,7 @@ import 'package:watch_hub/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:watch_hub/screens/home/watch_list.dart';
 import 'package:watch_hub/models/watch.dart';
+import 'package:watch_hub/main.dart';
 
 class OptionsClass {
   static List<dynamic> brandOptions = [0, 'Rolex', 'Longines'];
@@ -116,7 +117,7 @@ class _HomeState extends State<Home> {
                       });
                     },
                   )),
-              ListTile(
+              const ListTile(
                 title: Text("ADD ORDER BY PRICE AND POPULARITY HERE"),
                 leading: Icon(Icons.local_offer),
               ),
@@ -124,13 +125,18 @@ class _HomeState extends State<Home> {
           ),
         ),
         appBar: AppBar(
-          title: Text("Watch Hub"),
+          title: const Text("Watch Hub"),
           backgroundColor: Colors.brown[400],
           elevation: 0.0,
           actions: <Widget>[
             Row(
               children: [
                 IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+                IconButton(
+                    onPressed: () {
+                      NavigationKey.navKey.currentState!.pushNamed('/cart');
+                    },
+                    icon: Icon(Icons.shopping_cart)),
                 TextButton.icon(
                   icon: Icon(Icons.person),
                   label: Text("Logout"),

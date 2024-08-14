@@ -161,39 +161,43 @@ class _WatchDetailState extends State<WatchDetail> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  child: waefaw == false
-                      ? ElevatedButton(
-                          onPressed: () async {
-                            await _database.addToCart(
-                                watch.model!,
-                                watch.brand!,
-                                itemQuantity,
-                                int.parse(watch.price!));
-                          },
-                          child: const Text("Add To Cart"),
-                        )
-                      : ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.zero)),
-                          onPressed: () {},
-                          child: const Row(
-                            children: [
-                              Text(
-                                "Added To Cart",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(
-                                Icons.shopping_cart,
-                                color: Colors.white,
-                              ),
-                            ],
-                          )),
-                ),
+                    child:
+                        // waefaw == false ?
+                        ElevatedButton(
+                  onPressed: () async {
+                    await _database.addToCart(
+                      watch.model!,
+                      watch.brand!,
+                      itemQuantity,
+                      int.parse(watch.price!),
+                      watch.images![0],
+                    );
+                  },
+                  child: const Text("Add To Cart"),
+                )
+                    // :
+                    //  ElevatedButton(
+                    //     style: ElevatedButton.styleFrom(
+                    //         backgroundColor: Colors.black,
+                    //         shape: const RoundedRectangleBorder(
+                    //             borderRadius: BorderRadius.zero)),
+                    //     onPressed: () {},
+                    //     child: const Row(
+                    //       children: [
+                    //         Text(
+                    //           "Added To Cart",
+                    //           style: TextStyle(color: Colors.white),
+                    //         ),
+                    //         SizedBox(
+                    //           width: 10,
+                    //         ),
+                    //         Icon(
+                    //           Icons.shopping_cart,
+                    //           color: Colors.white,
+                    //         ),
+                    //       ],
+                    //     )),
+                    ),
               ],
             ),
             const SizedBox(
@@ -325,29 +329,27 @@ class _WatchDetailState extends State<WatchDetail> {
                     double rating = watch.reviews![index]['stars'];
 
                     return ListTile(
-                      leading: Text(
-                        watch.reviews![index]['name'],
+                      leading: RatingBar.builder(
+                        allowHalfRating: true,
+                        ignoreGestures: true,
+                        itemSize: 19,
+                        initialRating: rating,
+                        itemBuilder: (context, index) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                        onRatingUpdate: (value) => print(value),
+                      ),
+                      // Text(
+                      //   watch.reviews![index]['name'],
+                      //   style: const TextStyle(fontSize: 20),
+                      // ),
+                      title: Text(
+                        watch.reviews![index]['review'],
                         style: const TextStyle(fontSize: 20),
                       ),
-                      title: Column(
-                        children: [
-                          Text(
-                            watch.reviews![index]['review'],
-                            style: const TextStyle(fontSize: 20),
-                          ),
-                          RatingBar.builder(
-                            allowHalfRating: true,
-                            ignoreGestures: true,
-                            itemSize: 19,
-                            initialRating: rating,
-                            itemBuilder: (context, index) => const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            onRatingUpdate: (value) => print(value),
-                          )
-                        ],
-                      ),
+
+                      subtitle: Text(watch.reviews![index]['name']),
                       trailing: Text(
                         watch.reviews![index]['time'],
                         style: const TextStyle(fontSize: 17),
