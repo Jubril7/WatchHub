@@ -16,11 +16,14 @@ class CartProvider extends StatefulWidget {
 class _CartProviderState extends State<CartProvider> {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<Cart>>.value(
-      value: DatabaseService().carts,
-      initialData: const [],
-      child: Scaffold(
-        body: CartList(),
+    return ChangeNotifierProvider(
+      create: (context) => DatabaseService(),
+      child: StreamProvider<List<Cart>>.value(
+        value: DatabaseService().carts,
+        initialData: const [],
+        child: Scaffold(
+          body: CartList(),
+        ),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import "package:cloud_firestore/cloud_firestore.dart";
+import 'package:flutter/material.dart';
 import 'package:watch_hub/models/cart.dart';
 import "package:watch_hub/models/watch.dart";
+import 'package:watch_hub/screens/home/cart_list.dart';
 import 'package:watch_hub/screens/home/home.dart';
 import 'package:watch_hub/screens/home/watch_detail.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,10 +11,13 @@ class GetBool {
   static Future<bool>? isAdded;
 }
 
-class DatabaseService {
+class DatabaseService extends ChangeNotifier {
   final String? uid;
   final FirebaseFirestore? db;
   DatabaseService({this.uid, this.db});
+
+  static int total = 0;
+  static int quantity = 0;
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -26,6 +31,16 @@ class DatabaseService {
   final DocumentReference<Map<String, dynamic>> cart =
       FirebaseFirestore.instance.collection("Cart").doc(user!.uid);
 
+  void increaseQuantity() {
+    notifyListeners();
+  }
+
+  void decreaseQuantity(int quantity) {
+    quantity -= 1;
+
+    notifyListeners();
+  }
+
   Future setUserData(
       String email, String address, String fullName, String phone) async {
     return await users.doc(uid).set({
@@ -34,6 +49,26 @@ class DatabaseService {
       "fullName": fullName,
       "phone": phone,
     });
+  }
+
+  Future createOrder() async {
+    User? user = auth.currentUser;
+    DocumentSnapshot<Map<String, dynamic>> getCart = await FirebaseFirestore
+        .instance
+        .collection("Cart")
+        .doc(user!.uid)
+        .get();
+    DocumentReference<Map<String, dynamic>> document =
+        await FirebaseFirestore.instance.collection("Orders").doc(user.uid);
+    List docs = [];
+    List docs1 = [];
+    docs.add(getCart.data()!);
+    docs1 = docs[0]['cart'];
+    print("docs1 says $docs1");
+    document
+        .set({"cart": FieldValue.arrayUnion(docs1)}, SetOptions(merge: true));
+
+    // document.update(cart)
   }
 
   Future addToCart(
@@ -69,31 +104,32 @@ class DatabaseService {
     }
   }
 
-  void increaseCartQuantity(String model, String brand, String image, int price,
-      int? initialQuantity, int newQuantity) {
-    cart.update({
-      "cart": FieldValue.arrayUnion([
-        {
-          "brand": brand,
-          "image": image,
-          "model": model,
-          "price": price,
-          "quantity": newQuantity,
-        }
-      ])
-    });
-    cart.update({
-      "cart": FieldValue.arrayRemove([
-        {
-          "brand": brand,
-          "image": image,
-          "model": model,
-          "price": price,
-          "quantity": initialQuantity,
-        }
-      ])
-    });
+  void updateCartQuantity(String model, String brand, String image, int price,
+      int initialQuantity, int newQuantity) {
+    // cart.update({
+    //   "cart": FieldValue.arrayUnion([
+    //     {
+    //       "brand": brand,
+    //       "image": image,
+    //       "model": model,
+    //       "price": price,
+    //       "quantity": newQuantity,
+    //     }
+    //   ])
+    // });
+    // cart.update({
+    //   "cart": FieldValue.arrayRemove([
+    //     {
+    //       "brand": brand,
+    //       "image": image,
+    //       "model": model,
+    //       "price": price,
+    //       "quantity": initialQuantity,
+    //     }
+    //   ])
+    // });
   }
+  void listen() {}
 
   Future<bool> getBool(String model) async {
     print("function ran");
@@ -200,14 +236,10 @@ class DatabaseService {
   }
 
   //get watches list
-  get sth async {
-    print("this ran");
-  }
 
   Stream<List<Watch>> get watches {
     dynamic brand = OptionsClass.currentBrand;
     dynamic type = OptionsClass.currentType;
-
     late Query filter;
 
     brand is int && type is int
