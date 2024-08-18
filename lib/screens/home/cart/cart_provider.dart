@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:watch_hub/models/cart.dart';
 import 'package:watch_hub/models/watch.dart';
-import 'package:watch_hub/screens/home/cart_list.dart';
-import 'package:watch_hub/screens/home/watch_list.dart';
+import 'package:watch_hub/screens/home/cart/cart_list.dart';
+import 'package:watch_hub/screens/home/shop/watch_list.dart';
 import 'package:watch_hub/services/database.dart';
 
 class CartProvider extends StatefulWidget {

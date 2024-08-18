@@ -2,9 +2,9 @@ import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:flutter/material.dart';
 import 'package:watch_hub/models/cart.dart';
 import "package:watch_hub/models/watch.dart";
-import 'package:watch_hub/screens/home/cart_list.dart';
+import 'package:watch_hub/screens/home/cart/cart_list.dart';
 import 'package:watch_hub/screens/home/home.dart';
-import 'package:watch_hub/screens/home/watch_detail.dart';
+import 'package:watch_hub/screens/home/shop/watch_detail.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class GetBool {
@@ -30,8 +30,10 @@ class DatabaseService extends ChangeNotifier {
 
   final DocumentReference<Map<String, dynamic>> cart =
       FirebaseFirestore.instance.collection("Cart").doc(user!.uid);
+  final DocumentReference<Map<String, dynamic>> order =
+      FirebaseFirestore.instance.collection("Orders").doc(user!.uid);
 
-  void increaseQuantity() {
+  void updateQuantity() {
     notifyListeners();
   }
 
@@ -68,7 +70,8 @@ class DatabaseService extends ChangeNotifier {
     document
         .set({"cart": FieldValue.arrayUnion(docs1)}, SetOptions(merge: true));
 
-    // document.update(cart)
+    cart.update({"cart": FieldValue.delete()});
+    notifyListeners();
   }
 
   Future addToCart(
@@ -129,7 +132,14 @@ class DatabaseService extends ChangeNotifier {
     //   ])
     // });
   }
-  void listen() {}
+  void editProfile(String fullname, String phone, String address) {
+    users.doc(user!.uid).update({
+      "fullname": fullname,
+      "phone": phone,
+      "address": address,
+      "email": user!.email,
+    });
+  }
 
   Future<bool> getBool(String model) async {
     print("function ran");
@@ -257,5 +267,9 @@ class DatabaseService extends ChangeNotifier {
 
   Stream<List<Cart>> get carts {
     return cart.snapshots().map(_cartFromSnapshot);
+  }
+
+  Stream<List<Cart>> get orders {
+    return order.snapshots().map(_cartFromSnapshot);
   }
 }

@@ -1,16 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:watch_hub/screens/home/cart_list.dart';
-import 'package:watch_hub/screens/home/cart_provider.dart';
-
+import 'package:watch_hub/screens/home/cart/cart_provider.dart';
+import 'package:watch_hub/screens/home/home.dart';
+import 'package:watch_hub/screens/home/orders/order_list.dart';
+import 'package:watch_hub/screens/home/orders/order_provider.dart';
+import 'package:watch_hub/screens/home/profile/edit_profile.dart';
 import 'package:watch_hub/screens/wrapper.dart';
 import 'package:watch_hub/services/auth.dart';
 import 'package:watch_hub/models/user.dart';
-import 'package:watch_hub/models/watch.dart';
-import 'package:watch_hub/models/cart.dart';
-import 'package:watch_hub/screens/home/watch_detail.dart';
-import 'package:watch_hub/services/database.dart';
+import 'package:watch_hub/screens/home/shop/watch_detail.dart';
+import 'package:watch_hub/screens/home/profile/profileList.dart';
 
 class NavigationKey {
   static final navKey = GlobalKey<NavigatorState>();
@@ -41,10 +42,14 @@ class MainApp extends StatelessWidget {
           navigatorKey: NavigationKey.navKey,
           debugShowCheckedModeBanner: false,
           routes: {
+            '/home': (context) => Home(),
+            '/profile_list': (context) => ProfileList(),
             '/watch_details': (context) => const WatchDetail(),
-            '/cart': (context) => const CartProvider()
+            '/cart': (context) => const CartProvider(),
+            '/orders': (context) => const OrderProvider(),
+            '/edit_profile': (context) => EditProfile()
           },
-          home: const Wrapper()),
+          home: Wrapper()),
     );
   }
 }

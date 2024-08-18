@@ -20,16 +20,6 @@ class _WatchDetailState extends State<WatchDetail> {
   bool? waefaw;
   final DatabaseService _database = DatabaseService();
 
-  @override
-  void initState() {
-    super.initState();
-    asyncMethod();
-  }
-
-  void asyncMethod() async {
-    waefaw = await DatabaseService().getBool('Aviation Big Eye');
-  }
-
   final _formKey = GlobalKey<FormState>();
   String error = '';
   double? userStarRating;
@@ -38,6 +28,7 @@ class _WatchDetailState extends State<WatchDetail> {
   @override
   Widget build(BuildContext context) {
     final watch = ModalRoute.of(context)?.settings.arguments as Watch;
+    print("watch is $watch");
 
     // final cart = Provider.of<List<Cart>>(context);
 
@@ -172,6 +163,20 @@ class _WatchDetailState extends State<WatchDetail> {
                       int.parse(watch.price!),
                       watch.images![0],
                     );
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              title: const Text("Watch Hub"),
+                              content: const Text("Added To Cart"),
+                              contentPadding: EdgeInsets.all(20.0),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: (const Text("Close")))
+                              ],
+                            ));
                   },
                   child: const Text("Add To Cart"),
                 )
@@ -404,6 +409,20 @@ class _WatchDetailState extends State<WatchDetail> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: const Text("Watch Hub"),
+                                    content: const Text("Review Sent"),
+                                    contentPadding: EdgeInsets.all(20.0),
+                                    actions: [
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: (const Text("Close")))
+                                    ],
+                                  ));
                           setState(() async {
                             await DatabaseService().addUserReview(
                                 userStarRating!, userReview!, watch.id!);
