@@ -37,7 +37,6 @@ class WatchList extends StatefulWidget {
 
 class WatchListState extends State<WatchList> {
   @override
-  @override
   Widget build(BuildContext context) {
     final watches = Provider.of<List<Watch>>(context);
     print("watch model is $watches");

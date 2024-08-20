@@ -21,9 +21,16 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Colors.brown[400],
-        title: const Text("Edit Profile"),
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        title: const Text(
+          "Edit Profile",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -38,6 +45,7 @@ class _EditProfileState extends State<EditProfile> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          style: TextStyle(fontSize: 20),
                           validator: (value) =>
                               value!.isEmpty ? "Enter A Name" : null,
                           onChanged: (value) => setState(() {
@@ -59,6 +67,7 @@ class _EditProfileState extends State<EditProfile> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          style: TextStyle(fontSize: 20),
                           validator: (value) =>
                               value!.isEmpty ? "Enter A Phone Number" : null,
                           onChanged: (value) => setState(() {
@@ -80,6 +89,7 @@ class _EditProfileState extends State<EditProfile> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
+                          style: TextStyle(fontSize: 20),
                           validator: (value) =>
                               value!.isEmpty ? "Enter An Address" : null,
                           onChanged: (value) => setState(() {
@@ -104,7 +114,7 @@ class _EditProfileState extends State<EditProfile> {
                 width: 200,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.yellow,
+                    backgroundColor: Color.fromARGB(255, 139, 185, 255),
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -133,7 +143,7 @@ class _EditProfileState extends State<EditProfile> {
                   },
                   child: const Text(
                     "Save Profile",
-                    style: TextStyle(color: Colors.black, fontSize: 18),
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),
               ),

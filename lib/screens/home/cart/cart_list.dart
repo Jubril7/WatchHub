@@ -28,13 +28,21 @@ class _CartListState extends State<CartList> {
     List totalPriceList = [];
     int totalQuantity;
     // cart.sort();
-
+    List cart = [];
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cart"),
+        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        title: const Text(
+          "Cart",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Consumer<List<Cart>>(builder: (context, cart, child) {
         if (cart.isEmpty) {
+          //  cart = data.sort(());
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -183,7 +191,7 @@ class _CartListState extends State<CartList> {
       }),
       bottomSheet: Container(
         height: 130,
-        color: Colors.brown[400],
+        color: Color.fromARGB(255, 22, 69, 169),
         child: Column(
           children: <Widget>[
             Row(
@@ -211,6 +219,7 @@ class _CartListState extends State<CartList> {
                 SizedBox(
                   width: 200,
                   child: FloatingActionButton(
+                    backgroundColor: Color.fromARGB(255, 139, 185, 255),
                     onPressed: () {
                       DatabaseService().createOrder();
                       showDialog(
@@ -232,7 +241,10 @@ class _CartListState extends State<CartList> {
                       //   "/orders",
                       // );
                     },
-                    child: Text("Confirm Order"),
+                    child: const Text(
+                      "Confirm Order",
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
                   ),
                 )
               ],

@@ -1,10 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:full_screen_image/full_screen_image.dart';
 import 'package:watch_hub/models/watch.dart';
+import 'package:watch_hub/screens/home/home.dart';
 import 'package:watch_hub/services/database.dart';
+
+class ReviewSort {
+  static List<dynamic> sortOptions = [0, 'oldest'];
+  static dynamic currentSort = sortOptions[0];
+}
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 User? user = auth.currentUser;
@@ -22,19 +29,49 @@ class _WatchDetailState extends State<WatchDetail> {
 
   final _formKey = GlobalKey<FormState>();
   String error = '';
-  double? userStarRating;
+  num? userStarRating;
   String? userReview;
   int itemQuantity = 1;
   @override
   Widget build(BuildContext context) {
     final watch = ModalRoute.of(context)?.settings.arguments as Watch;
-    print("watch is $watch");
+    final now = DateTime.now();
 
+    DateTime dateOptions = DateTime(now.year, now.month, now.day);
+    final date = dateOptions.toString().replaceAll("00:00:00.000", "");
+    print("watch is $watch");
+    ;
     // final cart = Provider.of<List<Cart>>(context);
+    List? watchSort = watch.reviews;
+    ("current is from beginning");
+    ReviewSort.currentSort == 0
+        ? watchSort!.sort((a, b) {
+            String firstSort = a['time'];
+            String secondSort = b['time'];
+            print("hello");
+
+            return firstSort.compareTo(secondSort);
+          })
+        : watchSort!.sort((a, b) {
+            String firstSort = a['time'];
+            String secondSort = b['time'];
+
+            return secondSort.compareTo(firstSort);
+          });
+
+    print("watch sort $watchSort");
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(232, 255, 255, 255),
       appBar: AppBar(
-        title: Text(watch.brand!),
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        title: const Text(
+          "Watch Detail",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color.fromARGB(255, 22, 69, 169),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -107,6 +144,7 @@ class _WatchDetailState extends State<WatchDetail> {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(232, 255, 255, 255),
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.zero),
                     ),
@@ -132,6 +170,7 @@ class _WatchDetailState extends State<WatchDetail> {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(232, 255, 255, 255),
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.zero)),
                     onPressed: () {
@@ -151,58 +190,82 @@ class _WatchDetailState extends State<WatchDetail> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                    child:
-                        // waefaw == false ?
-                        ElevatedButton(
-                  onPressed: () async {
-                    await _database.addToCart(
-                      watch.model!,
-                      watch.brand!,
-                      itemQuantity,
-                      int.parse(watch.price!),
-                      watch.images![0],
-                    );
-                    showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              title: const Text("Watch Hub"),
-                              content: const Text("Added To Cart"),
-                              contentPadding: EdgeInsets.all(20.0),
-                              actions: [
-                                TextButton(
+                FutureBuilder(
+                    future: DatabaseService().getBool(watch.model!),
+                    builder: (context, snapshot) {
+                      print("snapshot data bool is ${snapshot.data}");
+                      return Container(
+                          width: 240,
+                          child: snapshot.data == true
+                              ? Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ElevatedButton.icon(
+                                    icon: const Icon(
+                                      Icons.shopping_cart,
+                                      color: Colors.white,
+                                    ),
+                                    label: const Text(
+                                      "Added To Cart",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 139, 185, 255),
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.zero)),
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      Navigator.pushNamed(context, '/cart');
                                     },
-                                    child: (const Text("Close")))
-                              ],
-                            ));
-                  },
-                  child: const Text("Add To Cart"),
-                )
-                    // :
-                    //  ElevatedButton(
-                    //     style: ElevatedButton.styleFrom(
-                    //         backgroundColor: Colors.black,
-                    //         shape: const RoundedRectangleBorder(
-                    //             borderRadius: BorderRadius.zero)),
-                    //     onPressed: () {},
-                    //     child: const Row(
-                    //       children: [
-                    //         Text(
-                    //           "Added To Cart",
-                    //           style: TextStyle(color: Colors.white),
-                    //         ),
-                    //         SizedBox(
-                    //           width: 10,
-                    //         ),
-                    //         Icon(
-                    //           Icons.shopping_cart,
-                    //           color: Colors.white,
-                    //         ),
-                    //       ],
-                    //     )),
-                    ),
+                                  ),
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ElevatedButton.icon(
+                                    icon: const Icon(
+                                      Icons.shopping_cart,
+                                      color: Colors.white,
+                                    ),
+                                    label: const Text(
+                                      "Add To Cart",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            Color.fromARGB(255, 139, 185, 255),
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.zero)),
+                                    onPressed: () async {
+                                      await _database.addToCart(
+                                        watch.model!,
+                                        watch.brand!,
+                                        itemQuantity,
+                                        int.parse(watch.price!),
+                                        watch.images![0],
+                                      );
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) => AlertDialog(
+                                                title: const Text("Watch Hub"),
+                                                content:
+                                                    const Text("Added To Cart"),
+                                                contentPadding:
+                                                    EdgeInsets.all(20.0),
+                                                actions: [
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      child:
+                                                          (const Text("Close")))
+                                                ],
+                                              ));
+                                    },
+                                  ),
+                                ));
+                    }),
               ],
             ),
             const SizedBox(
@@ -323,22 +386,44 @@ class _WatchDetailState extends State<WatchDetail> {
                     ),
                   )),
             ),
+            DropdownMenu(
+              width: 200,
+              label: Text("Date"),
+              dropdownMenuEntries: <DropdownMenuEntry>[
+                DropdownMenuEntry(
+                    value: ReviewSort.sortOptions[1], label: 'Sort By Newest'),
+                DropdownMenuEntry(
+                    value: ReviewSort.sortOptions[0], label: 'Sort By Oldest'),
+              ],
+              onSelected: (value) => {
+                setState(() {
+                  ReviewSort.currentSort = value;
+                  // print("current is $currentSort");
+                })
+              },
+            ),
             SizedBox(
               width: double.maxFinite,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView.separated(
                   shrinkWrap: true,
-                  itemCount: watch.reviews!.length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: watchSort.length,
                   itemBuilder: (context, int index) {
-                    double rating = watch.reviews![index]['stars'];
+                    // reviewSort.sort((a, b) {
+                    //   String af = a;
+                    //   String bf = b;
+                    //   return af.compareTo(bf);
+                    // });
+                    num rating = watchSort[index]['stars'];
 
                     return ListTile(
                       leading: RatingBar.builder(
                         allowHalfRating: true,
                         ignoreGestures: true,
                         itemSize: 19,
-                        initialRating: rating,
+                        initialRating: rating.toDouble(),
                         itemBuilder: (context, index) => const Icon(
                           Icons.star,
                           color: Colors.amber,
@@ -350,13 +435,13 @@ class _WatchDetailState extends State<WatchDetail> {
                       //   style: const TextStyle(fontSize: 20),
                       // ),
                       title: Text(
-                        watch.reviews![index]['review'],
+                        watchSort[index]['review'],
                         style: const TextStyle(fontSize: 20),
                       ),
 
-                      subtitle: Text(watch.reviews![index]['name']),
+                      subtitle: Text(watchSort[index]['name']),
                       trailing: Text(
-                        watch.reviews![index]['time'],
+                        watchSort[index]['time'],
                         style: const TextStyle(fontSize: 17),
                       ),
                     );
@@ -392,7 +477,7 @@ class _WatchDetailState extends State<WatchDetail> {
                               border: InputBorder.none),
                         ),
                       )),
-                  Container(
+                  SizedBox(
                     width: double.maxFinite,
                     child: RatingBar.builder(
                         allowHalfRating: true,
@@ -405,31 +490,53 @@ class _WatchDetailState extends State<WatchDetail> {
                               userStarRating = value;
                             })),
                   ),
-                  Container(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                    title: const Text("Watch Hub"),
-                                    content: const Text("Review Sent"),
-                                    contentPadding: EdgeInsets.all(20.0),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: (const Text("Close")))
-                                    ],
-                                  ));
-                          setState(() async {
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      width: 400,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                Color.fromARGB(255, 139, 185, 255)),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
                             await DatabaseService().addUserReview(
-                                userStarRating!, userReview!, watch.id!);
-                          });
-                        }
-                      },
-                      child: Text("Send Review"),
+                                userStarRating!.toDouble(),
+                                userReview!,
+                                watch.id!);
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: const Text("Watch Hub"),
+                                      content: const Text("Review Sent"),
+                                      contentPadding: EdgeInsets.all(20.0),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () async {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: (const Text("Close")))
+                                      ],
+                                    ));
+
+                            setState(() {
+                              watchSort.add({
+                                "name": UserInformation.fullName,
+                                "review": userReview,
+                                "stars": userStarRating!.toDouble(),
+                                "time": date
+                              });
+                            });
+                          }
+                        },
+                        child: const Text(
+                          "Send Review",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      ),
                     ),
                   )
                 ],

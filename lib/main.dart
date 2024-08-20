@@ -7,6 +7,7 @@ import 'package:watch_hub/screens/home/home.dart';
 import 'package:watch_hub/screens/home/orders/order_list.dart';
 import 'package:watch_hub/screens/home/orders/order_provider.dart';
 import 'package:watch_hub/screens/home/profile/edit_profile.dart';
+import 'package:watch_hub/screens/home/profile/faq.dart';
 import 'package:watch_hub/screens/wrapper.dart';
 import 'package:watch_hub/services/auth.dart';
 import 'package:watch_hub/models/user.dart';
@@ -43,11 +44,12 @@ class MainApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routes: {
             '/home': (context) => Home(),
-            '/profile_list': (context) => ProfileList(),
+            '/profile_list': (context) => const ProfileList(),
             '/watch_details': (context) => const WatchDetail(),
             '/cart': (context) => const CartProvider(),
             '/orders': (context) => const OrderProvider(),
-            '/edit_profile': (context) => EditProfile()
+            '/edit_profile': (context) => const EditProfile(),
+            '/faq': (context) => const Faq()
           },
           home: Wrapper()),
     );

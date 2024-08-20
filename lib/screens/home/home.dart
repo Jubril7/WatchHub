@@ -44,7 +44,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final AuthService _auth = AuthService();
   String fullName = '';
   void getUser() async {
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -76,29 +75,10 @@ class _HomeState extends State<Home> {
         value: DatabaseService().watches,
         initialData: const [],
         child: Scaffold(
-            backgroundColor: Colors.brown[50],
-            drawer: Drawer(
-              child: Column(
-                children: <Widget>[
-                  const UserAccountsDrawerHeader(
-                    accountName: Text("Flutter"),
-                    accountEmail: null,
-                  ),
-                  ListTile(
-                    leading: TextButton.icon(
-                      icon: Icon(Icons.person),
-                      label: Text("Logout"),
-                      onPressed: () async {
-                        await _auth.signOut();
-                      },
-                    ),
-                  )
-                ],
-              ),
-            ),
+            backgroundColor: Color.fromARGB(232, 255, 255, 255),
             appBar: AppBar(
-              // title: const Text("Watch Hub"),
-              backgroundColor: Colors.brown[400],
+              automaticallyImplyLeading: false,
+              backgroundColor: Color.fromARGB(255, 22, 69, 169),
               elevation: 0.0,
               actions: <Widget>[
                 Row(
@@ -139,10 +119,12 @@ class _HomeState extends State<Home> {
                                   })),
                         )),
                     IconButton(
-                        onPressed: () {
-                          NavigationKey.navKey.currentState!.pushNamed('/cart');
-                        },
-                        icon: Icon(Icons.shopping_cart)),
+                      onPressed: () {
+                        NavigationKey.navKey.currentState!.pushNamed('/cart');
+                      },
+                      icon: const Icon(Icons.shopping_cart),
+                      color: Colors.white,
+                    ),
                   ],
                 )
               ],
@@ -151,38 +133,71 @@ class _HomeState extends State<Home> {
               children: [
                 Container(
                   height: 80,
-                  color: Color.fromARGB(255, 213, 195, 195),
+                  color: Color.fromARGB(255, 22, 69, 169),
                   child: Row(
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(3.0),
-                        child: DropdownMenu(
-                          width: 130,
-                          label: Text("By Brand"),
-                          dropdownMenuEntries: <DropdownMenuEntry>[
-                            DropdownMenuEntry(
+                        child: Theme(
+                          data: Theme.of(context).copyWith(
+                            primaryColorLight: Colors.red,
+                          ),
+                          child: DropdownMenu(
+                            textStyle: const TextStyle(color: Colors.white),
+                            initialSelection: 0,
+                            inputDecorationTheme: const InputDecorationTheme(
+                              suffixIconColor: Colors.white,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            width: 130,
+                            label: const Text(
+                              "By Brand",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            dropdownMenuEntries: <DropdownMenuEntry>[
+                              DropdownMenuEntry(
                                 value: OptionsClass.brandOptions[0],
-                                label: 'None'),
-                            DropdownMenuEntry(
-                                value: OptionsClass.brandOptions[1],
-                                label: 'Rolex'),
-                            DropdownMenuEntry(
-                                value: OptionsClass.brandOptions[2],
-                                label: 'Longines')
-                          ],
-                          onSelected: (value) {
-                            setState(() {
-                              OptionsClass.currentBrand = value;
-                              print("current is ${OptionsClass.currentBrand}");
-                            });
-                          },
+                                label: 'None',
+                              ),
+                              DropdownMenuEntry(
+                                  value: OptionsClass.brandOptions[1],
+                                  label: 'Rolex'),
+                              DropdownMenuEntry(
+                                  value: OptionsClass.brandOptions[2],
+                                  label: 'Longines')
+                            ],
+                            onSelected: (value) {
+                              setState(() {
+                                OptionsClass.currentBrand = value;
+                                print(
+                                    "current is ${OptionsClass.currentBrand}");
+                              });
+                            },
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(3.0),
                         child: DropdownMenu(
+                          initialSelection: 0,
+                          textStyle: const TextStyle(color: Colors.white),
+                          inputDecorationTheme: const InputDecorationTheme(
+                            suffixIconColor: Colors.white,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                           width: 130,
-                          label: Text("By Type"),
+                          label: const Text(
+                            "By Type",
+                            style: TextStyle(color: Colors.white),
+                          ),
                           dropdownMenuEntries: <DropdownMenuEntry>[
                             DropdownMenuEntry(
                                 value: OptionsClass.typeOptions[0],
@@ -203,8 +218,21 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       DropdownMenu(
+                        initialSelection: 0,
+                        textStyle: const TextStyle(color: Colors.white),
+                        inputDecorationTheme: const InputDecorationTheme(
+                          suffixIconColor: Colors.white,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                         width: 130,
-                        label: Text("Sort By"),
+                        label: const Text(
+                          "Sort By",
+                          style: TextStyle(color: Colors.white),
+                        ),
                         dropdownMenuEntries: <DropdownMenuEntry>[
                           DropdownMenuEntry(
                               value: OptionsClass.sortOptions[0],
@@ -239,7 +267,7 @@ class _HomeState extends State<Home> {
                 fixedColor: Colors.white,
                 showUnselectedLabels: false,
                 currentIndex: Wrapper.currentIndex,
-                backgroundColor: Colors.brown[400],
+                backgroundColor: Color.fromARGB(255, 22, 69, 169),
                 items: const <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
                     backgroundColor: Colors.lightBlue,

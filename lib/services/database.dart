@@ -2,7 +2,6 @@ import "package:cloud_firestore/cloud_firestore.dart";
 import 'package:flutter/material.dart';
 import 'package:watch_hub/models/cart.dart';
 import "package:watch_hub/models/watch.dart";
-import 'package:watch_hub/screens/home/cart/cart_list.dart';
 import 'package:watch_hub/screens/home/home.dart';
 import 'package:watch_hub/screens/home/shop/watch_detail.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -48,7 +47,7 @@ class DatabaseService extends ChangeNotifier {
     return await users.doc(uid).set({
       "email": email,
       "address": address,
-      "fullName": fullName,
+      "fullname": fullName,
       "phone": phone,
     });
   }
@@ -150,23 +149,14 @@ class DatabaseService extends ChangeNotifier {
         .doc(user!.uid)
         .get();
 
-    DocumentReference docRef =
-        FirebaseFirestore.instance.collection("Cart").doc(user.uid);
-    List list = [];
-    for (var doc in document.data()!['cart'] as Iterable) {
-      list.add(doc['model']);
-      print("model says before condition $model");
-      print("list is $list");
+    List item = document.data()!['cart'];
+    print("item list is ${item}");
+    for (var i = 0; i < item.length; i++) {
+      List modelList = [];
+      modelList.add(item[i]['model']);
+      print("model says before condition ${item[i]['model']}");
 
-      if (list.contains(model)) {
-        // GetBool.isAdded = true;
-        print("this item  exist");
-
-        return true;
-      } else {
-        GetBool.isAdded!.then((item) => item = false);
-
-        print("this item doesnt exist");
+      if (modelList.contains(model)) {
         return true;
       }
     }
@@ -214,7 +204,7 @@ class DatabaseService extends ChangeNotifier {
     watch_item.update({
       "reviews": FieldValue.arrayUnion([
         {
-          "name": userName.data()!['fullName'],
+          "name": userName.data()!['fullname'],
           "review": userReview,
           "stars": userStarRating,
           "time": date.toString().replaceAll(" ", ""),

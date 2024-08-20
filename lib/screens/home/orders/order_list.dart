@@ -29,7 +29,14 @@ class _OrderListState extends State<OrderList> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Orders"),
+        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        title: const Text(
+          "Orders",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: order.isEmpty
           ? Center(

@@ -25,8 +25,8 @@ class _WatchTileState extends State<WatchTile> {
       },
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black),
-        ),
+            // border: Border.all(color: Colors.blue),
+            ),
         child: Column(
           children: <Widget>[
             Container(
@@ -44,10 +44,14 @@ class _WatchTileState extends State<WatchTile> {
                 children: [
                   Text(
                     widget.watch!.brand!,
-                    style: const TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.grey, fontSize: 15),
                   ),
-                  Text(widget.watch!.model!),
-                  Text('\$${widget.watch!.price!}'),
+                  Text(
+                    widget.watch!.model!,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  Text('\$${widget.watch!.price!}',
+                      style: TextStyle(fontSize: 18)),
                 ],
               ),
             )

@@ -19,6 +19,7 @@ dependencies:
   full_screen_image: ^2.0.0
   flutter_rating_bar: ^4.0.1
   persistent_bottom_nav_bar: ^6.2.1
+  accordion: ^2.6.0
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:watch_hub/screens/home/home.dart';
 import 'package:watch_hub/screens/wrapper.dart';
+import 'package:watch_hub/services/auth.dart';
 
 class ProfileList extends StatefulWidget {
   const ProfileList({super.key});
@@ -10,12 +11,17 @@ class ProfileList extends StatefulWidget {
 }
 
 class _ProfileListState extends State<ProfileList> {
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.brown[400],
-        title: const Text("Profile"),
+        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        title: const Text(
+          "Profile",
+          style: TextStyle(color: Colors.white),
+        ),
         automaticallyImplyLeading: false,
       ),
       body: Container(
@@ -51,14 +57,14 @@ class _ProfileListState extends State<ProfileList> {
                 width: 200,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.yellow,
+                    backgroundColor: Color.fromARGB(255, 139, 185, 255),
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, "/edit_profile");
                   },
                   child: const Text(
                     "Edit Profile",
-                    style: TextStyle(color: Colors.black, fontSize: 18),
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),
               ),
@@ -78,8 +84,12 @@ class _ProfileListState extends State<ProfileList> {
                   height: 30,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: Colors.brown.withOpacity(0.5)),
-                  child: const Icon(Icons.shopping_bag),
+                      color: Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
+                  child: const Icon(
+                    Icons.shopping_bag,
+                    // color: Color.fromARGB(232, 236, 233, 225),
+                    color: Colors.white,
+                  ),
                 ),
                 title: const Text(
                   "Orders",
@@ -91,7 +101,7 @@ class _ProfileListState extends State<ProfileList> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                       color: Colors.grey.withOpacity(0.1)),
-                  child: const Icon(Icons.arrow_circle_right_rounded),
+                  child: const Icon(Icons.arrow_forward_ios),
                 ),
               ),
               ListTile(
@@ -106,8 +116,11 @@ class _ProfileListState extends State<ProfileList> {
                   height: 30,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: Colors.brown.withOpacity(0.5)),
-                  child: const Icon(Icons.favorite),
+                      color: Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
+                  child: const Icon(
+                    Icons.favorite,
+                    color: Colors.white,
+                  ),
                 ),
                 title: const Text(
                   "Favourites",
@@ -119,14 +132,14 @@ class _ProfileListState extends State<ProfileList> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                       color: Colors.grey.withOpacity(0.1)),
-                  child: const Icon(Icons.arrow_circle_right_rounded),
+                  child: const Icon(Icons.arrow_forward_ios),
                 ),
               ),
               ListTile(
                 onTap: () => {
                   Navigator.pushNamed(
                     context,
-                    "/cart",
+                    "/faq",
                   )
                 },
                 leading: Container(
@@ -134,11 +147,11 @@ class _ProfileListState extends State<ProfileList> {
                   height: 30,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: Colors.brown.withOpacity(0.5)),
-                  child: const Icon(Icons.shopping_cart),
+                      color: Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
+                  child: const Icon(Icons.question_answer, color: Colors.white),
                 ),
                 title: const Text(
-                  "Cart",
+                  "FAQ",
                   style: TextStyle(fontSize: 20),
                 ),
                 trailing: Container(
@@ -147,7 +160,25 @@ class _ProfileListState extends State<ProfileList> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                       color: Colors.grey.withOpacity(0.1)),
-                  child: const Icon(Icons.arrow_circle_right_rounded),
+                  child: const Icon(Icons.arrow_forward_ios),
+                ),
+              ),
+              const SizedBox(
+                height: 70,
+              ),
+              SizedBox(
+                width: 200,
+                child: FloatingActionButton(
+                  backgroundColor: Colors.black,
+                  onPressed: () async {
+                    await _auth.signOut();
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => Wrapper()));
+                  },
+                  child: const Text(
+                    "Sign out",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                 ),
               )
             ],
@@ -156,7 +187,7 @@ class _ProfileListState extends State<ProfileList> {
           fixedColor: Colors.white,
           showUnselectedLabels: false,
           currentIndex: Wrapper.currentIndex,
-          backgroundColor: Colors.brown[400],
+          backgroundColor: Color.fromARGB(255, 22, 69, 169),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               backgroundColor: Colors.lightBlue,

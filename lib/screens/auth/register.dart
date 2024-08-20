@@ -26,11 +26,15 @@ class _RegisterState extends State<Register> {
     return loading
         ? const Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
+            backgroundColor: Color.fromARGB(232, 255, 255, 255),
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+              automaticallyImplyLeading: false,
+              backgroundColor: Color.fromARGB(255, 22, 69, 169),
               elevation: 0.0,
-              title: const Text("Sign Up to Watch Hub"),
+              title: const Text(
+                "Sign Up to Watch Hub",
+                style: TextStyle(color: Colors.white),
+              ),
               actions: <Widget>[
                 TextButton.icon(
                   onPressed: () {
@@ -87,8 +91,18 @@ class _RegisterState extends State<Register> {
                                               fullName = value;
                                             });
                                           },
-                                          decoration: textInputDecoration
-                                              .copyWith(hintText: "Full Name"),
+                                          decoration:
+                                              textInputDecoration.copyWith(
+                                            hintText: "Full Name",
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 139, 185, 255),
+                                                width: 2,
+                                              ),
+                                            ),
+                                          ),
                                         )),
                                     const SizedBox(
                                       height: 30,
@@ -104,8 +118,18 @@ class _RegisterState extends State<Register> {
                                               email = value;
                                             });
                                           },
-                                          decoration: textInputDecoration
-                                              .copyWith(hintText: "Email"),
+                                          decoration:
+                                              textInputDecoration.copyWith(
+                                            hintText: "Email",
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 139, 185, 255),
+                                                width: 2,
+                                              ),
+                                            ),
+                                          ),
                                         )),
                                     const SizedBox(
                                       height: 30,
@@ -121,8 +145,18 @@ class _RegisterState extends State<Register> {
                                               address = value;
                                             });
                                           },
-                                          decoration: textInputDecoration
-                                              .copyWith(hintText: "Address"),
+                                          decoration:
+                                              textInputDecoration.copyWith(
+                                            hintText: "Address",
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 139, 185, 255),
+                                                width: 2,
+                                              ),
+                                            ),
+                                          ),
                                         )),
                                     const SizedBox(
                                       height: 30,
@@ -140,7 +174,16 @@ class _RegisterState extends State<Register> {
                                           },
                                           decoration:
                                               textInputDecoration.copyWith(
-                                                  hintText: "Phone Number"),
+                                            hintText: "Phone Number",
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 139, 185, 255),
+                                                width: 2,
+                                              ),
+                                            ),
+                                          ),
                                         )),
                                     const SizedBox(
                                       height: 30,
@@ -155,6 +198,15 @@ class _RegisterState extends State<Register> {
                                             decoration:
                                                 textInputDecoration.copyWith(
                                                     hintText: "Password",
+                                                    focusedBorder:
+                                                        const OutlineInputBorder(
+                                                      borderSide:
+                                                          const BorderSide(
+                                                        color: Color.fromARGB(
+                                                            255, 139, 185, 255),
+                                                        width: 2,
+                                                      ),
+                                                    ),
                                                     errorStyle: TextStyle()),
                                             onChanged: (value) {
                                               setState(() {
@@ -164,32 +216,40 @@ class _RegisterState extends State<Register> {
                                     const SizedBox(
                                       height: 30,
                                     ),
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.green),
-                                      child: const Text(
-                                        "Register",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      onPressed: () async {
-                                        if (_formKey.currentState!.validate()) {
-                                          setState(() => loading = true);
-                                          dynamic result = await _auth
-                                              .registerWithEmailAndPassword(
-                                                  email,
-                                                  password,
-                                                  address,
-                                                  fullName,
-                                                  phone);
-                                          if (result == null) {
-                                            setState(() {
-                                              error =
-                                                  'Please supply a valid email';
-                                              loading = false;
-                                            });
+                                    SizedBox(
+                                      width: 200,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color.fromARGB(
+                                              255, 139, 185, 255),
+                                        ),
+                                        child: const Text(
+                                          "Register",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white),
+                                        ),
+                                        onPressed: () async {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            setState(() => loading = true);
+                                            dynamic result = await _auth
+                                                .registerWithEmailAndPassword(
+                                                    email,
+                                                    password,
+                                                    address,
+                                                    fullName,
+                                                    phone);
+                                            if (result == null) {
+                                              setState(() {
+                                                error =
+                                                    'Please supply a valid email';
+                                                loading = false;
+                                              });
+                                            }
                                           }
-                                        }
-                                      },
+                                        },
+                                      ),
                                     ),
                                     const SizedBox(
                                       height: 12.0,

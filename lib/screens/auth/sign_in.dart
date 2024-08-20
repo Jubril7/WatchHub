@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watch_hub/screens/wrapper.dart';
 import 'package:watch_hub/services/auth.dart';
 import 'package:watch_hub/shared/constants.dart';
 import 'package:watch_hub/shared/loading.dart';
@@ -26,11 +27,13 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
+            backgroundColor: Color.fromARGB(232, 255, 255, 255),
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+              automaticallyImplyLeading: false,
+              backgroundColor: Color.fromARGB(255, 22, 69, 169),
               elevation: 0.0,
-              title: const Text("Sign in to Watch Hub"),
+              title: const Text("Sign in to Watch Hub",
+                  style: TextStyle(color: Colors.white)),
               actions: <Widget>[
                 TextButton.icon(
                     onPressed: () {
@@ -87,8 +90,18 @@ class _SignInState extends State<SignIn> {
                                               email = value;
                                             });
                                           },
-                                          decoration: textInputDecoration
-                                              .copyWith(hintText: "Email"),
+                                          decoration:
+                                              textInputDecoration.copyWith(
+                                            hintText: "Email",
+                                            focusedBorder:
+                                                const OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 139, 185, 255),
+                                                width: 2,
+                                              ),
+                                            ),
+                                          ),
                                         )),
                                     const SizedBox(
                                       height: 30,
@@ -100,8 +113,18 @@ class _SignInState extends State<SignIn> {
                                                 ? 'Enter a password with at least 6 characters'
                                                 : null,
                                             obscureText: true,
-                                            decoration: textInputDecoration
-                                                .copyWith(hintText: "Password"),
+                                            decoration:
+                                                textInputDecoration.copyWith(
+                                              hintText: "Password",
+                                              focusedBorder:
+                                                  const OutlineInputBorder(
+                                                borderSide: const BorderSide(
+                                                  color: Color.fromARGB(
+                                                      255, 139, 185, 255),
+                                                  width: 2,
+                                                ),
+                                              ),
+                                            ),
                                             onChanged: (value) {
                                               setState(() {
                                                 password = value;
@@ -110,28 +133,37 @@ class _SignInState extends State<SignIn> {
                                     const SizedBox(
                                       height: 30,
                                     ),
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.green),
-                                      child: const Text(
-                                        "Sign In",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      onPressed: () async {
-                                        if (_formKey.currentState!.validate()) {
-                                          setState(() => loading = true);
-                                          dynamic result = await _auth
-                                              .signInWithEmailAndPassword(
-                                                  email, password);
-                                          if (result == null) {
-                                            setState(() {
-                                              error =
-                                                  'Could not sign in with those credentials';
-                                              loading = false;
-                                            });
+                                    SizedBox(
+                                      width: 200,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color.fromARGB(
+                                              255, 139, 185, 255),
+                                        ),
+                                        child: const Text(
+                                          "Sign In",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white),
+                                        ),
+                                        onPressed: () async {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            setState(() => loading = true);
+                                            dynamic result = await _auth
+                                                .signInWithEmailAndPassword(
+                                                    email, password);
+                                            if (result == null) {
+                                              setState(() {
+                                                error =
+                                                    'Could not sign in with those credentials';
+                                                loading = false;
+                                              });
+                                            }
+                                            Wrapper.currentIndex = 0;
                                           }
-                                        }
-                                      },
+                                        },
+                                      ),
                                     ),
                                     const SizedBox(
                                       height: 12.0,
