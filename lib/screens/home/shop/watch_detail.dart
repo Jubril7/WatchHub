@@ -170,7 +170,8 @@ class _WatchDetailState extends State<WatchDetail> {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(232, 255, 255, 255),
+                        backgroundColor:
+                            const Color.fromARGB(232, 255, 255, 255),
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.zero)),
                     onPressed: () {
@@ -202,16 +203,22 @@ class _WatchDetailState extends State<WatchDetail> {
                                   child: ElevatedButton.icon(
                                     icon: const Icon(
                                       Icons.shopping_cart,
-                                      color: Colors.white,
+                                      color: Color.fromARGB(255, 139, 185, 255),
                                     ),
                                     label: const Text(
                                       "Added To Cart",
                                       style: TextStyle(
-                                          color: Colors.white, fontSize: 20),
+                                          color: Color.fromARGB(
+                                              255, 139, 185, 255),
+                                          fontSize: 20),
                                     ),
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            Color.fromARGB(255, 139, 185, 255),
+                                        backgroundColor: const Color.fromARGB(
+                                            232, 255, 255, 255),
+                                        side: const BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 139, 185, 255),
+                                        ),
                                         shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.zero)),
                                     onPressed: () {

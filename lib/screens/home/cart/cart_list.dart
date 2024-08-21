@@ -30,8 +30,9 @@ class _CartListState extends State<CartList> {
     // cart.sort();
     List cart = [];
     return Scaffold(
+      backgroundColor: const Color.fromARGB(232, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        backgroundColor: const Color.fromARGB(255, 22, 69, 169),
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
         ),

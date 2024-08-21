@@ -12,8 +12,15 @@ class _FaqState extends State<Faq> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(232, 255, 255, 255),
       appBar: AppBar(
-        title: Text("FAQ"),
+        iconTheme: const IconThemeData(
+          color: Colors.white, //change your color here
+        ),
+        title: const Text(
+          "FAQ",
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Color.fromARGB(255, 22, 69, 169),
       ),
       body: SizedBox(
@@ -24,7 +31,7 @@ class _FaqState extends State<Faq> {
                   headerBorderColor: Color.fromARGB(255, 22, 69, 169),
                   contentBorderColor: Color.fromARGB(255, 22, 69, 169),
                   headerBackgroundColor: Color.fromARGB(255, 22, 69, 169),
-                  headerPadding: EdgeInsets.all(20),
+                  headerPadding: const EdgeInsets.all(20),
                   children: <AccordionSection>[
                     AccordionSection(
                         header: const Text(

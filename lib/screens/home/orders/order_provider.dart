@@ -18,6 +18,17 @@ class _OrderProviderState extends State<OrderProvider> {
       value: DatabaseService().orders,
       initialData: const [],
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 22, 69, 169),
+          iconTheme: const IconThemeData(
+            color: Colors.white, //change your color here
+          ),
+          title: const Text(
+            "Orders",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        backgroundColor: Color.fromARGB(232, 255, 255, 255),
         body: OrderList(),
       ),
     );

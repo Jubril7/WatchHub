@@ -21,9 +21,7 @@ class _CartProviderState extends State<CartProvider> {
       child: StreamProvider<List<Cart>>.value(
         value: DatabaseService().carts,
         initialData: const [],
-        child: Scaffold(
-          body: CartList(),
-        ),
+        child: const CartList(),
       ),
     );
   }

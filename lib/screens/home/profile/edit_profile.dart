@@ -21,6 +21,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(232, 255, 255, 255),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         iconTheme: const IconThemeData(
