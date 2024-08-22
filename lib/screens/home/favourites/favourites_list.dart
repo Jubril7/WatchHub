@@ -58,7 +58,7 @@ class _FavouritesListState extends State<FavouritesList> {
                           visualDensity: const VisualDensity(vertical: 4),
                           leading: Image.network(favourite[index].image!),
                           title: Text(
-                            "${favourite[index].model!}(${favourite[index].quantity})",
+                            favourite[index].model!,
                             style: const TextStyle(fontSize: 20),
                           ),
                           subtitle: Text(
