@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:watch_hub/screens/wrapper.dart';
 import 'package:watch_hub/services/auth.dart';
 import 'package:watch_hub/shared/constants.dart';
 import 'package:watch_hub/shared/loading.dart';
@@ -232,7 +233,10 @@ class _RegisterState extends State<Register> {
                                         onPressed: () async {
                                           if (_formKey.currentState!
                                               .validate()) {
-                                            setState(() => loading = true);
+                                            setState(() {
+                                              Wrapper.currentIndex = 0;
+                                              loading = true;
+                                            });
                                             dynamic result = await _auth
                                                 .registerWithEmailAndPassword(
                                                     email,
@@ -243,7 +247,7 @@ class _RegisterState extends State<Register> {
                                             if (result == null) {
                                               setState(() {
                                                 error =
-                                                    'Please supply a valid email';
+                                                    'Invalid Email Or User Exists';
                                                 loading = false;
                                               });
                                             }

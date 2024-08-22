@@ -338,17 +338,49 @@ class DatabaseService extends ChangeNotifier {
           type: doc['type'] ?? '',
           popularity: doc['popularity'] ?? 0,
           price: doc['price'].toString(),
-          image: doc['image'] ?? '',
           description: doc['description'] ?? '',
           resistance: doc['resistance'] ?? '',
           material: doc['material'] ?? '',
           color: doc['color'] ?? '',
-          descImg1: doc['desc_img1'] ?? '',
-          descImg2: doc['desc_img2'] ?? '',
-          descImg3: doc['desc_img3'] ?? '',
           images: doc['images'] ?? [],
           reviews: doc['reviews'] ?? []);
     }).toList();
+  }
+
+  void addWatch(
+      String brand,
+      String model,
+      String color,
+      String type,
+      String material,
+      String popularity,
+      String resistance,
+      String price,
+      String description,
+      String cover,
+      String secondary1,
+      String secondary2,
+      String secondary3) {
+    watch_list.doc(model).set({
+      "id": model,
+      "brand": brand,
+      "model": model,
+      "color": color,
+      "type": type,
+      "material": material,
+      "popularity": int.parse(popularity),
+      "resistance": resistance,
+      "price": int.parse(price),
+      "description": description,
+      "images": [cover, secondary1, secondary2, secondary3],
+      "reviews": []
+    });
+  }
+
+  void deleteWatch(String model) {
+    var toDelete = watch_list.where("model", isEqualTo: model);
+    toDelete.get().then(
+        (snapshot) => snapshot.docs.forEach((doc) => doc.reference.delete()));
   }
 
   //get watches list

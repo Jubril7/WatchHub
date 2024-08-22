@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:watch_hub/models/user.dart';
+import 'package:watch_hub/screens/admin/admin.dart';
 import 'package:watch_hub/screens/auth/authenticate.dart';
 import 'package:watch_hub/screens/home/home.dart';
 
@@ -25,7 +26,7 @@ class _WrapperState extends State<Wrapper> {
       return const Authenticate();
     } else {
       return Scaffold(
-        body: Home(),
+        body: user.uid == "1YvNn6g5DxWVabKNNHiVCcIzGPf1" ? Admin() : Home(),
       );
     }
   }

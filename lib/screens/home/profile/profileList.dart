@@ -124,7 +124,7 @@ class _ProfileListState extends State<ProfileList> {
                   ),
                 ),
                 title: const Text(
-                  "Favourites",
+                  "Wishlist",
                   style: TextStyle(fontSize: 20),
                 ),
                 trailing: Container(
@@ -164,8 +164,33 @@ class _ProfileListState extends State<ProfileList> {
                   child: const Icon(Icons.arrow_forward_ios),
                 ),
               ),
-              const SizedBox(
-                height: 70,
+              ListTile(
+                onTap: () => {
+                  Navigator.pushNamed(
+                    context,
+                    "/contact",
+                  )
+                },
+                leading: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
+                  child: const Icon(Icons.headset_mic, color: Colors.white),
+                ),
+                title: const Text(
+                  "Contact Us",
+                  style: TextStyle(fontSize: 20),
+                ),
+                trailing: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: Colors.grey.withOpacity(0.1)),
+                  child: const Icon(Icons.arrow_forward_ios),
+                ),
               ),
               SizedBox(
                 width: 200,

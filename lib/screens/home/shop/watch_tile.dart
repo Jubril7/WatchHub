@@ -24,9 +24,6 @@ class _WatchTileState extends State<WatchTile> {
         DatabaseService().getCartBool(widget.watch!.model!);
       },
       child: Container(
-        decoration: BoxDecoration(
-            // border: Border.all(color: Colors.blue),
-            ),
         child: Column(
           children: <Widget>[
             Container(
@@ -50,8 +47,13 @@ class _WatchTileState extends State<WatchTile> {
                     widget.watch!.model!,
                     style: TextStyle(fontSize: 18),
                   ),
-                  Text('\$${widget.watch!.price!}',
-                      style: TextStyle(fontSize: 18)),
+                  Text(
+                    '\$${widget.watch!.price!}',
+                    style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 181, 61, 53)),
+                  ),
                 ],
               ),
             )

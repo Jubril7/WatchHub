@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:watch_hub/screens/admin/add_watch.dart';
+import 'package:watch_hub/screens/admin/delete_watch.dart';
 import 'package:watch_hub/screens/home/cart/cart_list.dart';
-import 'package:watch_hub/screens/home/cart/cart_provider.dart';
 import 'package:watch_hub/screens/home/favourites/favourites_provider.dart';
 import 'package:watch_hub/screens/home/home.dart';
 import 'package:watch_hub/screens/home/orders/order_provider.dart';
 import 'package:watch_hub/screens/home/orders/track.dart';
+import 'package:watch_hub/screens/home/profile/contact.dart';
 import 'package:watch_hub/screens/home/profile/edit_profile.dart';
 import 'package:watch_hub/screens/home/profile/faq.dart';
 import 'package:watch_hub/screens/wrapper.dart';
@@ -56,6 +58,9 @@ class MainApp extends StatelessWidget {
               '/faq': (context) => const Faq(),
               '/favourites': (context) => const FavouritesProvider(),
               '/track': (context) => const Track(),
+              '/contact': (context) => const Contact(),
+              '/add_watch': (context) => const AddWatch(),
+              '/delete_watch': (context) => const DeleteWatch(),
             },
             home: Wrapper()),
       ),

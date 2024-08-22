@@ -289,7 +289,7 @@ class _WatchDetailState extends State<WatchDetail> {
                                 builder: (context) => AlertDialog(
                                       title: const Text("Watch Hub"),
                                       content:
-                                          const Text("Removed From Favourites"),
+                                          const Text("Removed From Wishlist"),
                                       contentPadding: EdgeInsets.all(20.0),
                                       actions: [
                                         TextButton(
@@ -317,8 +317,7 @@ class _WatchDetailState extends State<WatchDetail> {
                                 context: context,
                                 builder: (context) => AlertDialog(
                                       title: const Text("Watch Hub"),
-                                      content:
-                                          const Text("Added To Favourites"),
+                                      content: const Text("Added To Wishlist"),
                                       contentPadding: EdgeInsets.all(20.0),
                                       actions: [
                                         TextButton(

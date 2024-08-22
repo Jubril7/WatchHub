@@ -68,30 +68,46 @@ class _CartListState extends State<CartList> {
                             // height: 50,
                             child: ListTile(
                                 dense: true,
-                                visualDensity: VisualDensity(vertical: 4),
+                                visualDensity: const VisualDensity(vertical: 4),
                                 leading: SizedBox(
-                                  child: CircleAvatar(
-                                    backgroundImage: NetworkImage(
-                                      cart[index].image!,
-                                    ),
-                                  ),
-                                ),
+                                    child: Image.network(cart[index].image!)),
                                 title: Text(
                                   cart[index].model!,
                                   style: TextStyle(fontSize: 20),
                                 ),
-                                subtitle: Text(
-                                  "\$${cart[index].price.toString()!}",
-                                  style: TextStyle(fontSize: 20),
+                                subtitle: Row(
+                                  children: [
+                                    Text(
+                                      "\$${cart[index].price.toString()!}",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        DatabaseService().deleteFromCart(
+                                            cart[index].model!,
+                                            cart[index].brand!,
+                                            cart[index].quantity!,
+                                            cart[index].price!,
+                                            cart[index].image!);
+                                      },
+                                      icon: const Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                      ),
+                                      iconSize: 30,
+                                    )
+                                  ],
                                 ),
                                 trailing: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      border:
+                                          Border.all(color: Colors.lightBlue)),
                                   height: 120,
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      IconButton.filled(
-                                        style: IconButton.styleFrom(
-                                            backgroundColor: Colors.red),
+                                      IconButton(
                                         onPressed: () {
                                           if (cart[index].quantity != 1) {
                                             Provider.of<DatabaseService>(
@@ -103,28 +119,14 @@ class _CartListState extends State<CartList> {
                                         },
                                         icon: Icon(Icons.remove),
                                       ),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            "QTY: ${cart[index].quantity.toString()}",
-                                            style: TextStyle(fontSize: 16),
-                                          ),
-                                          IconButton(
-                                            onPressed: () {
-                                              DatabaseService().deleteFromCart(
-                                                  cart[index].model!,
-                                                  cart[index].brand!,
-                                                  cart[index].quantity!,
-                                                  cart[index].price!,
-                                                  cart[index].image!);
-                                            },
-                                            icon: Icon(Icons.delete),
-                                          )
-                                        ],
+
+                                      Text(
+                                        cart[index].quantity.toString(),
+                                        style: TextStyle(fontSize: 20),
                                       ),
-                                      IconButton.filled(
-                                        style: IconButton.styleFrom(
-                                            backgroundColor: Colors.green),
+                                      //
+
+                                      IconButton(
                                         onPressed: () {
                                           Provider.of<DatabaseService>(context,
                                                   listen: false)

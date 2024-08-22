@@ -54,11 +54,9 @@ class _FavouritesListState extends State<FavouritesList> {
                   Container(
                       // height: 50,
                       child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              favourite[index].image!,
-                            ),
-                          ),
+                          dense: true,
+                          visualDensity: const VisualDensity(vertical: 4),
+                          leading: Image.network(favourite[index].image!),
                           title: Text(
                             "${favourite[index].model!}(${favourite[index].quantity})",
                             style: const TextStyle(fontSize: 20),

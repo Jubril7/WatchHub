@@ -55,10 +55,10 @@ class _OrderListState extends State<OrderList> {
                       child: GestureDetector(
                     onTap: () => {Navigator.pushNamed(context, '/track')},
                     child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          order[index].image!,
-                        ),
+                      dense: true,
+                      visualDensity: const VisualDensity(vertical: 4),
+                      leading: Image.network(
+                        order[index].image!,
                       ),
                       title: Text(
                         "${order[index].model!}(${order[index].quantity})",

@@ -24,7 +24,7 @@ class _FavouritesProviderState extends State<FavouritesProvider> {
             color: Colors.white, //change your color here
           ),
           title: const Text(
-            "Favourites",
+            "Wishlist",
             style: TextStyle(color: Colors.white),
           ),
         ),

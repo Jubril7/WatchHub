@@ -7,23 +7,6 @@ import 'package:watch_hub/screens/home/home.dart';
 class getResult {
   static List search = [];
 }
-// class OptionsClass {
-//   static List<dynamic> brandOptions = [0, 'Rolex', 'Longines'];
-//   static dynamic currentBrand = brandOptions[0];
-
-//   static List<dynamic> typeOptions = [0, 'Analog', 'Digital'];
-//   static dynamic currentType = typeOptions[0];
-
-//   static List<dynamic> sortOptions = [
-//     0,
-//     'highestPrice',
-//     'lowestPrice',
-//     'highestPopularity',
-//     'lowestPopularity'
-//   ];
-//   // static dynamic currentSortOption = typeOptions[0];
-//   static String currentSortOption = 'highestPrice';
-// }
 
 class WatchList extends StatefulWidget {
   const WatchList({super.key});
