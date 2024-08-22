@@ -192,7 +192,7 @@ class _WatchDetailState extends State<WatchDetail> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FutureBuilder(
-                    future: DatabaseService().getBool(watch.model!),
+                    future: DatabaseService().getCartBool(watch.model!),
                     builder: (context, snapshot) {
                       print("snapshot data bool is ${snapshot.data}");
                       return Container(
@@ -273,6 +273,67 @@ class _WatchDetailState extends State<WatchDetail> {
                                   ),
                                 ));
                     }),
+                FutureBuilder(
+                  future: DatabaseService().getFavouriteBool(watch.model!),
+                  builder: (context, snapshot) => snapshot.data == true
+                      ? IconButton(
+                          onPressed: () {
+                            DatabaseService().removeFromFavourites(
+                                watch.model!,
+                                watch.brand!,
+                                1,
+                                int.parse(watch.price!),
+                                watch.images![0]!);
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: const Text("Watch Hub"),
+                                      content:
+                                          const Text("Removed From Favourites"),
+                                      contentPadding: EdgeInsets.all(20.0),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () async {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: (const Text("Close")))
+                                      ],
+                                    ));
+                          },
+                          icon: const Icon(
+                            Icons.favorite,
+                            size: 40,
+                            color: Colors.pink,
+                          ))
+                      : IconButton(
+                          onPressed: () {
+                            DatabaseService().addToFavourites(
+                                watch.model!,
+                                watch.brand!,
+                                1,
+                                int.parse(watch.price!),
+                                watch.images![0]!);
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: const Text("Watch Hub"),
+                                      content:
+                                          const Text("Added To Favourites"),
+                                      contentPadding: EdgeInsets.all(20.0),
+                                      actions: [
+                                        TextButton(
+                                            onPressed: () async {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: (const Text("Close")))
+                                      ],
+                                    ));
+                          },
+                          icon: const Icon(
+                            Icons.favorite,
+                            size: 40,
+                          )),
+                ),
               ],
             ),
             const SizedBox(

@@ -3,8 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:watch_hub/screens/home/cart/cart_list.dart';
 import 'package:watch_hub/screens/home/cart/cart_provider.dart';
+import 'package:watch_hub/screens/home/favourites/favourites_provider.dart';
 import 'package:watch_hub/screens/home/home.dart';
 import 'package:watch_hub/screens/home/orders/order_provider.dart';
+import 'package:watch_hub/screens/home/orders/track.dart';
 import 'package:watch_hub/screens/home/profile/edit_profile.dart';
 import 'package:watch_hub/screens/home/profile/faq.dart';
 import 'package:watch_hub/screens/wrapper.dart';
@@ -51,7 +53,9 @@ class MainApp extends StatelessWidget {
               '/cart': (context) => const CartList(),
               '/orders': (context) => const OrderProvider(),
               '/edit_profile': (context) => const EditProfile(),
-              '/faq': (context) => const Faq()
+              '/faq': (context) => const Faq(),
+              '/favourites': (context) => const FavouritesProvider(),
+              '/track': (context) => const Track(),
             },
             home: Wrapper()),
       ),

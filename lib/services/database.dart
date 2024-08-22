@@ -24,6 +24,8 @@ class DatabaseService extends ChangeNotifier {
       FirebaseFirestore.instance.collection("Cart").doc(user!.uid);
   final DocumentReference<Map<String, dynamic>> order =
       FirebaseFirestore.instance.collection("Orders").doc(user!.uid);
+  final DocumentReference<Map<String, dynamic>> favourite =
+      FirebaseFirestore.instance.collection("Favourites").doc(user!.uid);
 
   int totalPrice = 0;
   String totalPriceString = '';
@@ -164,6 +166,85 @@ class DatabaseService extends ChangeNotifier {
     updateTotalPrice();
   }
 
+  Future addToFavourites(
+    String model,
+    String brand,
+    int quantity,
+    int price,
+    String image,
+  ) async {
+    try {
+      DocumentReference docRef =
+          FirebaseFirestore.instance.collection("Favourites").doc(user!.uid);
+      updateTotalPrice();
+      notifyListeners();
+      await favourite.set({
+        "cart": FieldValue.arrayUnion([
+          {
+            "brand": brand,
+            "model": model,
+            "quantity": quantity,
+            "price": price,
+            "image": image,
+          }
+        ])
+      }, SetOptions(merge: true));
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future removeFromFavourites(
+    String model,
+    String brand,
+    int quantity,
+    int price,
+    String image,
+  ) async {
+    try {
+      DocumentReference docRef =
+          FirebaseFirestore.instance.collection("Favourites").doc(user!.uid);
+      updateTotalPrice();
+      notifyListeners();
+      await favourite.set({
+        "cart": FieldValue.arrayRemove([
+          {
+            "brand": brand,
+            "model": model,
+            "quantity": quantity,
+            "price": price,
+            "image": image,
+          }
+        ])
+      }, SetOptions(merge: true));
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<bool> getFavouriteBool(String model) async {
+    print("function ran");
+    User? user = FirebaseAuth.instance.currentUser;
+    DocumentSnapshot<Map<String, dynamic>> document = await FirebaseFirestore
+        .instance
+        .collection("Favourites")
+        .doc(user!.uid)
+        .get();
+
+    List item = document.data()!['cart'];
+    print("item list is ${item}");
+    for (var i = 0; i < item.length; i++) {
+      List modelList = [];
+      modelList.add(item[i]['model']);
+      print("model says before condition ${item[i]['model']}");
+
+      if (modelList.contains(model)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   void editProfile(String fullname, String phone, String address) {
     users.doc(user!.uid).update({
       "fullname": fullname,
@@ -173,7 +254,7 @@ class DatabaseService extends ChangeNotifier {
     });
   }
 
-  Future<bool> getBool(String model) async {
+  Future<bool> getCartBool(String model) async {
     print("function ran");
     User? user = FirebaseAuth.instance.currentUser;
     DocumentSnapshot<Map<String, dynamic>> document = await FirebaseFirestore
@@ -296,5 +377,9 @@ class DatabaseService extends ChangeNotifier {
 
   Stream<List<Cart>> get orders {
     return order.snapshots().map(_cartFromSnapshot);
+  }
+
+  Stream<List<Cart>> get favourites {
+    return favourite.snapshots().map(_cartFromSnapshot);
   }
 }

@@ -52,23 +52,26 @@ class _OrderListState extends State<OrderList> {
                 children: [
                   Container(
                       // height: 50,
-                      child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        order[index].image!,
+                      child: GestureDetector(
+                    onTap: () => {Navigator.pushNamed(context, '/track')},
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          order[index].image!,
+                        ),
                       ),
-                    ),
-                    title: Text(
-                      "${order[index].model!}(${order[index].quantity})",
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    subtitle: Text(
-                      order[index].brand!,
-                      style: const TextStyle(fontSize: 20),
-                    ),
-                    trailing: Text(
-                      totalQuantity.toString(),
-                      style: const TextStyle(fontSize: 20),
+                      title: Text(
+                        "${order[index].model!}(${order[index].quantity})",
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      subtitle: Text(
+                        order[index].brand!,
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      trailing: Text(
+                        "\$${totalQuantity.toString()}",
+                        style: const TextStyle(fontSize: 20),
+                      ),
                     ),
                   )),
                   Divider()

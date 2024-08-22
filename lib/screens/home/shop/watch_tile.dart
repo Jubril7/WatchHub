@@ -21,7 +21,7 @@ class _WatchTileState extends State<WatchTile> {
           "/watch_details",
           arguments: widget.watch,
         );
-        DatabaseService().getBool(widget.watch!.model!);
+        DatabaseService().getCartBool(widget.watch!.model!);
       },
       child: Container(
         decoration: BoxDecoration(
