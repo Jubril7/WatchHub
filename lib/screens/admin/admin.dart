@@ -12,6 +12,7 @@ class Admin extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(232, 255, 255, 255),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
           "Admin",
           style: TextStyle(color: Colors.white),

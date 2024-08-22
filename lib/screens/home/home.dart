@@ -11,7 +11,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import "package:cloud_firestore/cloud_firestore.dart";
 
 class OptionsClass {
-  static List<dynamic> brandOptions = [0, 'Rolex', 'Longines'];
+  static List<dynamic> brandOptions = [
+    0,
+    'Rolex',
+    'Longines',
+    'Casio',
+    'Cluse',
+    'Seiko',
+    'Tommy Hilfiger'
+  ];
   static dynamic currentBrand = brandOptions[0];
 
   static List<dynamic> typeOptions = [0, 'Analog', 'Digital'];
@@ -75,7 +83,7 @@ class _HomeState extends State<Home> {
         value: DatabaseService().watches,
         initialData: const [],
         child: Scaffold(
-            backgroundColor: Color.fromARGB(232, 255, 255, 255),
+            backgroundColor: Colors.white,
             appBar: AppBar(
               automaticallyImplyLeading: false,
               backgroundColor: Color.fromARGB(255, 22, 69, 169),
@@ -146,55 +154,13 @@ class _HomeState extends State<Home> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: Theme(
-                          data: Theme.of(context).copyWith(
-                            primaryColorLight: Colors.red,
-                          ),
-                          child: DropdownMenu(
-                            textStyle: const TextStyle(color: Colors.white),
-                            initialSelection: 0,
-                            inputDecorationTheme: const InputDecorationTheme(
-                              suffixIconColor: Colors.white,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            width: 130,
-                            label: const Text(
-                              "By Brand",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            dropdownMenuEntries: <DropdownMenuEntry>[
-                              DropdownMenuEntry(
-                                value: OptionsClass.brandOptions[0],
-                                label: 'None',
-                              ),
-                              DropdownMenuEntry(
-                                  value: OptionsClass.brandOptions[1],
-                                  label: 'Rolex'),
-                              DropdownMenuEntry(
-                                  value: OptionsClass.brandOptions[2],
-                                  label: 'Longines')
-                            ],
-                            onSelected: (value) {
-                              setState(() {
-                                OptionsClass.currentBrand = value;
-                                print(
-                                    "current is ${OptionsClass.currentBrand}");
-                              });
-                            },
-                          ),
+                      Theme(
+                        data: Theme.of(context).copyWith(
+                          primaryColorLight: Colors.red,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(3.0),
                         child: DropdownMenu(
-                          initialSelection: 0,
                           textStyle: const TextStyle(color: Colors.white),
+                          initialSelection: 0,
                           inputDecorationTheme: const InputDecorationTheme(
                             suffixIconColor: Colors.white,
                             enabledBorder: OutlineInputBorder(
@@ -205,27 +171,74 @@ class _HomeState extends State<Home> {
                           ),
                           width: 130,
                           label: const Text(
-                            "By Type",
+                            "By Brand",
                             style: TextStyle(color: Colors.white),
                           ),
                           dropdownMenuEntries: <DropdownMenuEntry>[
                             DropdownMenuEntry(
-                                value: OptionsClass.typeOptions[0],
-                                label: 'None'),
+                              value: OptionsClass.brandOptions[0],
+                              label: 'None',
+                            ),
                             DropdownMenuEntry(
-                                value: OptionsClass.typeOptions[1],
-                                label: 'Analog'),
+                                value: OptionsClass.brandOptions[1],
+                                label: 'Rolex'),
                             DropdownMenuEntry(
-                                value: OptionsClass.typeOptions[2],
-                                label: 'Digital')
+                                value: OptionsClass.brandOptions[2],
+                                label: 'Longines'),
+                            DropdownMenuEntry(
+                                value: OptionsClass.brandOptions[3],
+                                label: 'Casio'),
+                            DropdownMenuEntry(
+                                value: OptionsClass.brandOptions[4],
+                                label: 'Cluse'),
+                            DropdownMenuEntry(
+                                value: OptionsClass.brandOptions[5],
+                                label: 'Seiko'),
+                            DropdownMenuEntry(
+                                value: OptionsClass.brandOptions[6],
+                                label: 'Tommy Hilfiger')
                           ],
                           onSelected: (value) {
                             setState(() {
-                              OptionsClass.currentType = value;
+                              OptionsClass.currentBrand = value;
                               print("current is ${OptionsClass.currentBrand}");
                             });
                           },
                         ),
+                      ),
+                      DropdownMenu(
+                        initialSelection: 0,
+                        textStyle: const TextStyle(color: Colors.white),
+                        inputDecorationTheme: const InputDecorationTheme(
+                          suffixIconColor: Colors.white,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        width: 130,
+                        label: const Text(
+                          "By Type",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        dropdownMenuEntries: <DropdownMenuEntry>[
+                          DropdownMenuEntry(
+                              value: OptionsClass.typeOptions[0],
+                              label: 'None'),
+                          DropdownMenuEntry(
+                              value: OptionsClass.typeOptions[1],
+                              label: 'Analog'),
+                          DropdownMenuEntry(
+                              value: OptionsClass.typeOptions[2],
+                              label: 'Digital')
+                        ],
+                        onSelected: (value) {
+                          setState(() {
+                            OptionsClass.currentType = value;
+                            print("current is ${OptionsClass.currentBrand}");
+                          });
+                        },
                       ),
                       DropdownMenu(
                         initialSelection: 0,

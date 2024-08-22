@@ -25,9 +25,11 @@ class WatchListState extends State<WatchList> {
     print("watch model is $watches");
 
     OptionsClass.currentSortOption == 'highestPrice'
-        ? watches.sort((a, b) => b.price!.compareTo(a.price!))
+        ? watches
+            .sort((a, b) => int.parse(b.price!).compareTo(int.parse(a.price!)))
         : OptionsClass.currentSortOption == 'lowestPrice'
-            ? watches.sort((a, b) => a.price!.compareTo(b.price!))
+            ? watches.sort(
+                (a, b) => int.parse(a.price!).compareTo(int.parse(b.price!)))
             : OptionsClass.currentSortOption == 'highestPopularity'
                 ? watches.sort((a, b) => b.popularity!.compareTo(a.popularity!))
                 : OptionsClass.currentSortOption == 'lowestPopularity'
@@ -66,7 +68,7 @@ class WatchListState extends State<WatchList> {
                 itemCount: getResult.search.length,
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    childAspectRatio: 0.7, crossAxisCount: 2),
+                    childAspectRatio: 0.6, crossAxisCount: 2),
                 itemBuilder: (contexts, index) {
                   return Padding(
                       padding: const EdgeInsets.all(8.0),

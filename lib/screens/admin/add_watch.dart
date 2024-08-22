@@ -351,6 +351,20 @@ class _AddWatchState extends State<AddWatch> {
                         secondary2Controller.text,
                         secondary3Controller.text);
 
+                    brandController.clear();
+                    modelController.clear();
+                    colorController.clear();
+                    typeController.clear();
+                    materialController.clear();
+                    popularityController.clear();
+                    resistanceController.clear();
+                    priceController.clear();
+                    descriptionController.clear();
+                    coverController.clear();
+                    secondary1Controller.clear();
+                    secondary2Controller.clear();
+                    secondary3Controller.clear();
+
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
@@ -369,7 +383,7 @@ class _AddWatchState extends State<AddWatch> {
                 },
                 child: const Text(
                   "Add Watch",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ),
             )
