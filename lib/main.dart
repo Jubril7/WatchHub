@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:watch_hub/screens/home/cart/cart_list.dart';
 import 'package:watch_hub/screens/home/cart/cart_provider.dart';
 import 'package:watch_hub/screens/home/home.dart';
-import 'package:watch_hub/screens/home/orders/order_list.dart';
 import 'package:watch_hub/screens/home/orders/order_provider.dart';
 import 'package:watch_hub/screens/home/profile/edit_profile.dart';
 import 'package:watch_hub/screens/home/profile/faq.dart';
@@ -13,6 +12,7 @@ import 'package:watch_hub/services/auth.dart';
 import 'package:watch_hub/models/user.dart';
 import 'package:watch_hub/screens/home/shop/watch_detail.dart';
 import 'package:watch_hub/screens/home/profile/profileList.dart';
+import 'package:watch_hub/services/database.dart';
 
 class NavigationKey {
   static final navKey = GlobalKey<NavigatorState>();
@@ -39,19 +39,22 @@ class MainApp extends StatelessWidget {
     return StreamProvider<UserDetails?>.value(
       initialData: null,
       value: AuthService().user,
-      child: MaterialApp(
-          navigatorKey: NavigationKey.navKey,
-          debugShowCheckedModeBanner: false,
-          routes: {
-            '/home': (context) => Home(),
-            '/profile_list': (context) => const ProfileList(),
-            '/watch_details': (context) => const WatchDetail(),
-            '/cart': (context) => const CartProvider(),
-            '/orders': (context) => const OrderProvider(),
-            '/edit_profile': (context) => const EditProfile(),
-            '/faq': (context) => const Faq()
-          },
-          home: Wrapper()),
+      child: ChangeNotifierProvider(
+        create: (context) => DatabaseService(),
+        child: MaterialApp(
+            navigatorKey: NavigationKey.navKey,
+            debugShowCheckedModeBanner: false,
+            routes: {
+              '/home': (context) => Home(),
+              '/profile_list': (context) => const ProfileList(),
+              '/watch_details': (context) => const WatchDetail(),
+              '/cart': (context) => const CartList(),
+              '/orders': (context) => const OrderProvider(),
+              '/edit_profile': (context) => const EditProfile(),
+              '/faq': (context) => const Faq()
+            },
+            home: Wrapper()),
+      ),
     );
   }
 }

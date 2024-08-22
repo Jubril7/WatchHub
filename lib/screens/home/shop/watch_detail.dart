@@ -423,7 +423,10 @@ class _WatchDetailState extends State<WatchDetail> {
                     //   String bf = b;
                     //   return af.compareTo(bf);
                     // });
-                    num rating = watchSort[index]['stars'];
+                    num rating;
+                    watchSort[index]['stars'] == null
+                        ? rating = 0.0
+                        : rating = watchSort[index]['stars'];
 
                     return ListTile(
                       leading: RatingBar.builder(
@@ -507,7 +510,7 @@ class _WatchDetailState extends State<WatchDetail> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                Color.fromARGB(255, 139, 185, 255)),
+                                const Color.fromARGB(255, 139, 185, 255)),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             await DatabaseService().addUserReview(

@@ -81,51 +81,59 @@ class _HomeState extends State<Home> {
               backgroundColor: Color.fromARGB(255, 22, 69, 169),
               elevation: 0.0,
               actions: <Widget>[
-                Row(
-                  children: [
-                    SizedBox(
-                        width: 310,
-                        height: 130,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 2),
-                          child: TextField(
-                              controller: SearchBox.control,
-                              decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.all(10),
-                                  fillColor: Colors.white,
-                                  filled: true,
-                                  hoverColor: Colors.white,
-                                  focusedBorder: const OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white)),
-                                  focusColor: Colors.white,
-                                  suffix: IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        SearchBox.control.clear();
-                                        FocusManager.instance.primaryFocus!
-                                            .unfocus();
-                                      });
-                                    },
-                                    icon: Icon(Icons.cancel),
-                                  ),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20.0),
-                                      borderSide: const BorderSide(
-                                          width: 0.8, color: Colors.white)),
-                                  hintText: "Search Watch"),
-                              onChanged: (value) => setState(() {
-                                    SearchBox.control.text = value;
-                                  })),
-                        )),
-                    IconButton(
-                      onPressed: () {
-                        NavigationKey.navKey.currentState!.pushNamed('/cart');
-                      },
-                      icon: const Icon(Icons.shopping_cart),
-                      color: Colors.white,
-                    ),
-                  ],
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const SizedBox(
+                        width: 30,
+                      ),
+                      SizedBox(
+                          width: 310,
+                          height: 130,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 2),
+                            child: TextField(
+                                controller: SearchBox.control,
+                                decoration: InputDecoration(
+                                    contentPadding: const EdgeInsets.all(10),
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    hoverColor: Colors.white,
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white)),
+                                    focusColor: Colors.white,
+                                    suffix: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          SearchBox.control.clear();
+                                          FocusManager.instance.primaryFocus!
+                                              .unfocus();
+                                        });
+                                      },
+                                      icon: Icon(Icons.cancel),
+                                    ),
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                        borderSide: const BorderSide(
+                                            width: 0.8, color: Colors.white)),
+                                    hintText: "Search Watch"),
+                                onChanged: (value) => setState(() {
+                                      SearchBox.control.text = value;
+                                    })),
+                          )),
+                      IconButton(
+                        onPressed: () {
+                          NavigationKey.navKey.currentState!.pushNamed('/cart');
+                        },
+                        icon: const Icon(Icons.shopping_cart),
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
@@ -133,8 +141,10 @@ class _HomeState extends State<Home> {
               children: [
                 Container(
                   height: 80,
+                  width: MediaQuery.sizeOf(context).width,
                   color: Color.fromARGB(255, 22, 69, 169),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(3.0),

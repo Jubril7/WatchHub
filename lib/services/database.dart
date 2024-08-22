@@ -6,17 +6,10 @@ import 'package:watch_hub/screens/home/home.dart';
 import 'package:watch_hub/screens/home/shop/watch_detail.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class GetBool {
-  static Future<bool>? isAdded;
-}
-
 class DatabaseService extends ChangeNotifier {
   final String? uid;
   final FirebaseFirestore? db;
   DatabaseService({this.uid, this.db});
-
-  static int total = 0;
-  static int quantity = 0;
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -32,13 +25,43 @@ class DatabaseService extends ChangeNotifier {
   final DocumentReference<Map<String, dynamic>> order =
       FirebaseFirestore.instance.collection("Orders").doc(user!.uid);
 
-  void updateQuantity() {
-    notifyListeners();
+  int totalPrice = 0;
+  String totalPriceString = '';
+  Future<int> updateTotalPrice() async {
+    // another example of getting the data
+    DocumentSnapshot<Map<String, dynamic>> document = await FirebaseFirestore
+        .instance
+        .collection("Cart")
+        .doc(user!.uid)
+        .get();
+
+    List item = document.data()!['cart'];
+    print("item list is ${item}");
+    List totalPriceList = [];
+
+    for (var i in item) {
+      totalPriceList.add(i['price'] * i['quantity']);
+    }
+    return totalPriceList.reduce((value, element) => value + element);
   }
 
-  void decreaseQuantity(int quantity) {
-    quantity -= 1;
+  void updateQuantity(int index, int quantity, String model) async {
+    DocumentSnapshot<Map<String, dynamic>> cartList = await FirebaseFirestore
+        .instance
+        .collection("Cart")
+        .doc(user!.uid)
+        .get();
+    List item = cartList.data()!['cart'];
 
+    List quantityList = item;
+
+    var getIndex = quantityList.firstWhere((item) => item['model'] == model);
+    if (getIndex != null) {
+      getIndex['quantity'] += quantity;
+      cart.set({"cart": FieldValue.arrayUnion(item)});
+    }
+
+    updateTotalPrice();
     notifyListeners();
   }
 
@@ -89,7 +112,8 @@ class DatabaseService extends ChangeNotifier {
           .get();
       DocumentReference docRef =
           FirebaseFirestore.instance.collection("Cart").doc(user.uid);
-
+      updateTotalPrice();
+      notifyListeners();
       await cart.set({
         "cart": FieldValue.arrayUnion([
           {
@@ -106,31 +130,40 @@ class DatabaseService extends ChangeNotifier {
     }
   }
 
-  void updateCartQuantity(String model, String brand, String image, int price,
-      int initialQuantity, int newQuantity) {
-    // cart.update({
-    //   "cart": FieldValue.arrayUnion([
-    //     {
-    //       "brand": brand,
-    //       "image": image,
-    //       "model": model,
-    //       "price": price,
-    //       "quantity": newQuantity,
-    //     }
-    //   ])
-    // });
-    // cart.update({
-    //   "cart": FieldValue.arrayRemove([
-    //     {
-    //       "brand": brand,
-    //       "image": image,
-    //       "model": model,
-    //       "price": price,
-    //       "quantity": initialQuantity,
-    //     }
-    //   ])
-    // });
+  Future deleteFromCart(
+    String model,
+    String brand,
+    int quantity,
+    int price,
+    String image,
+  ) async {
+    try {
+      User? user = auth.currentUser;
+      DocumentSnapshot<Map<String, dynamic>> document = await FirebaseFirestore
+          .instance
+          .collection("Cart")
+          .doc(user!.uid)
+          .get();
+      DocumentReference docRef =
+          FirebaseFirestore.instance.collection("Cart").doc(user.uid);
+
+      await cart.set({
+        "cart": FieldValue.arrayRemove([
+          {
+            "brand": brand,
+            "model": model,
+            "quantity": quantity,
+            "price": price,
+            "image": image,
+          }
+        ])
+      }, SetOptions(merge: true));
+    } catch (e) {
+      print(e.toString());
+    }
+    updateTotalPrice();
   }
+
   void editProfile(String fullname, String phone, String address) {
     users.doc(user!.uid).update({
       "fullname": fullname,
@@ -171,9 +204,11 @@ class DatabaseService extends ChangeNotifier {
     docs.add(snapshot.data()!);
     docs1 = docs[0]['cart'];
     print("docs1 says $docs1");
+    updateTotalPrice();
 
     return docs1.map((doc) {
       print("cart brand is ${doc['brand']}");
+
       return Cart(
         brand: doc['brand'] ?? '',
         model: doc['model'] ?? '',
