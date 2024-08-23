@@ -18,7 +18,8 @@ class OptionsClass {
     'Casio',
     'Cluse',
     'Seiko',
-    'Tommy Hilfiger'
+    'Tommy Hilfiger',
+    'Rolex',
   ];
   static dynamic currentBrand = brandOptions[0];
 
@@ -196,7 +197,10 @@ class _HomeState extends State<Home> {
                                 label: 'Seiko'),
                             DropdownMenuEntry(
                                 value: OptionsClass.brandOptions[6],
-                                label: 'Tommy Hilfiger')
+                                label: 'Tommy Hilfiger'),
+                            DropdownMenuEntry(
+                                value: OptionsClass.brandOptions[7],
+                                label: 'Rolex')
                           ],
                           onSelected: (value) {
                             setState(() {

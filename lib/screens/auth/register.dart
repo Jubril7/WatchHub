@@ -27,7 +27,7 @@ class _RegisterState extends State<Register> {
     return loading
         ? const Loading()
         : Scaffold(
-            backgroundColor: Color.fromARGB(232, 255, 255, 255),
+            backgroundColor: Color.fromARGB(255, 253, 249, 246),
             appBar: AppBar(
               automaticallyImplyLeading: false,
               backgroundColor: Color.fromARGB(255, 22, 69, 169),

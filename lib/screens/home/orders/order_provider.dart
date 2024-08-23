@@ -28,7 +28,7 @@ class _OrderProviderState extends State<OrderProvider> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(232, 255, 255, 255),
+        backgroundColor: Color.fromARGB(255, 253, 249, 246),
         body: OrderList(),
       ),
     );

@@ -10,7 +10,7 @@ class Admin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(232, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 253, 249, 246),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
