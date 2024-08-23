@@ -62,7 +62,7 @@ class _WatchDetailState extends State<WatchDetail> {
     print("watch sort $watchSort");
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(232, 255, 255, 255),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
@@ -184,6 +184,16 @@ class _WatchDetailState extends State<WatchDetail> {
                       style: TextStyle(fontSize: 25.0, color: Colors.black),
                     ))
               ],
+            ),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(10, 8, 0, 0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Stock: Available",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
             ),
             const SizedBox(
               height: 20.0,
