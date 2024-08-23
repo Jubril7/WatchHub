@@ -16,18 +16,19 @@ class _ProfileListState extends State<ProfileList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(232, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(232, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        backgroundColor: const Color.fromARGB(255, 22, 69, 169),
         title: const Text(
           "Profile",
           style: TextStyle(color: Colors.white),
         ),
         automaticallyImplyLeading: false,
       ),
-      body: Container(
+      body: SizedBox(
           width: double.maxFinite,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -37,28 +38,23 @@ class _ProfileListState extends State<ProfileList> {
                     decoration: BoxDecoration(
                         color: Colors.grey,
                         border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.all(Radius.circular(100))),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(100))),
                     child: const Icon(
                       Icons.person,
                       size: 90,
                       color: Colors.white,
                     )),
               ),
-              const SizedBox(
-                height: 10,
-              ),
               Text(
                 "Hi, ${UserInformation.fullName}",
                 style: const TextStyle(fontSize: 20),
-              ),
-              const SizedBox(
-                height: 10,
               ),
               SizedBox(
                 width: 200,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 139, 185, 255),
+                    backgroundColor: const Color.fromARGB(255, 139, 185, 255),
                   ),
                   onPressed: () {
                     Navigator.pushNamed(context, "/edit_profile");
@@ -68,9 +64,6 @@ class _ProfileListState extends State<ProfileList> {
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 30,
               ),
               const Divider(),
               ListTile(
@@ -85,7 +78,8 @@ class _ProfileListState extends State<ProfileList> {
                   height: 30,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
+                      color: const Color.fromARGB(255, 22, 69, 169)
+                          .withOpacity(0.5)),
                   child: const Icon(
                     Icons.shopping_bag,
                     // color: Color.fromARGB(232, 236, 233, 225),
