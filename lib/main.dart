@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:watch_hub/screens/admin/add_watch.dart';
 import 'package:watch_hub/screens/admin/delete_watch.dart';
+import 'package:watch_hub/screens/auth/reset.dart';
 import 'package:watch_hub/screens/home/cart/cart_list.dart';
 import 'package:watch_hub/screens/home/favourites/favourites_provider.dart';
 import 'package:watch_hub/screens/home/home.dart';
@@ -50,6 +51,7 @@ class MainApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             routes: {
               '/home': (context) => Home(),
+              '/reset': (context) => Reset(),
               '/profile_list': (context) => const ProfileList(),
               '/watch_details': (context) => const WatchDetail(),
               '/cart': (context) => const CartList(),

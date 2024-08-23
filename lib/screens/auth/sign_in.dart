@@ -130,6 +130,18 @@ class _SignInState extends State<SignIn> {
                                                 password = value;
                                               });
                                             })),
+                                    Align(
+                                        alignment: Alignment.topRight,
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                                context, '/reset');
+                                          },
+                                          child: const Text(
+                                            "Forgot Password?",
+                                            style: TextStyle(fontSize: 17),
+                                          ),
+                                        )),
                                     const SizedBox(
                                       height: 30,
                                     ),
