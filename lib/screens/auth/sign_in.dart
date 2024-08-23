@@ -47,75 +47,53 @@ class _SignInState extends State<SignIn> {
                     ))
               ],
             ),
-            body: SingleChildScrollView(
-              child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 20.0, horizontal: 50.0),
-                  child: Form(
-                      key: _formKey,
-                      child: Center(
-                          child: Container(
-                              width: 350,
-                              height: 500,
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 60,
-                                      height: 60,
-                                      child: const Icon(
-                                        Icons.lock,
-                                        size: 40,
+            body: Center(
+              child: SingleChildScrollView(
+                child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20.0, horizontal: 50.0),
+                    child: Form(
+                        key: _formKey,
+                        child: Center(
+                            child: Container(
+                                width: 350,
+                                height: 500,
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        width: 60,
+                                        height: 60,
+                                        child: const Icon(
+                                          Icons.lock,
+                                          size: 40,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 30,
-                                    ),
-                                    const Text(
-                                      "Account",
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    SizedBox(
-                                        width: 300,
-                                        child: TextFormField(
-                                          validator: (val) => val!.isEmpty
-                                              ? 'Enter an email'
-                                              : null,
-                                          onChanged: (value) {
-                                            setState(() {
-                                              email = value;
-                                            });
-                                          },
-                                          decoration:
-                                              textInputDecoration.copyWith(
-                                            hintText: "Email",
-                                            focusedBorder:
-                                                const OutlineInputBorder(
-                                              borderSide: const BorderSide(
-                                                color: Color.fromARGB(
-                                                    255, 139, 185, 255),
-                                                width: 2,
-                                              ),
-                                            ),
-                                          ),
-                                        )),
-                                    const SizedBox(
-                                      height: 30,
-                                    ),
-                                    SizedBox(
-                                        width: 300,
-                                        child: TextFormField(
-                                            validator: (val) => val!.length < 6
-                                                ? 'Enter a password with at least 6 characters'
+                                      const SizedBox(
+                                        height: 30,
+                                      ),
+                                      const Text(
+                                        "Account",
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      SizedBox(
+                                          width: 300,
+                                          child: TextFormField(
+                                            validator: (val) => val!.isEmpty
+                                                ? 'Enter an email'
                                                 : null,
-                                            obscureText: true,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                email = value;
+                                              });
+                                            },
                                             decoration:
                                                 textInputDecoration.copyWith(
-                                              hintText: "Password",
+                                              hintText: "Email",
                                               focusedBorder:
                                                   const OutlineInputBorder(
                                                 borderSide: const BorderSide(
@@ -125,65 +103,92 @@ class _SignInState extends State<SignIn> {
                                                 ),
                                               ),
                                             ),
-                                            onChanged: (value) {
-                                              setState(() {
-                                                password = value;
-                                              });
-                                            })),
-                                    Align(
-                                        alignment: Alignment.topRight,
-                                        child: InkWell(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context, '/reset');
-                                          },
-                                          child: const Text(
-                                            "Forgot Password?",
-                                            style: TextStyle(fontSize: 17),
-                                          ),
-                                        )),
-                                    const SizedBox(
-                                      height: 30,
-                                    ),
-                                    SizedBox(
-                                      width: 200,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: const Color.fromARGB(
-                                              255, 139, 185, 255),
-                                        ),
-                                        child: const Text(
-                                          "Sign In",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white),
-                                        ),
-                                        onPressed: () async {
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            setState(() => loading = true);
-                                            dynamic result = await _auth
-                                                .signInWithEmailAndPassword(
-                                                    email, password);
-                                            if (result == null) {
-                                              setState(() {
-                                                error =
-                                                    'Could not sign in with those credentials';
-                                                loading = false;
-                                              });
-                                            }
-                                            Wrapper.currentIndex = 0;
-                                          }
-                                        },
+                                          )),
+                                      const SizedBox(
+                                        height: 30,
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 12.0,
-                                    ),
-                                    Text(error,
-                                        style: const TextStyle(
-                                            color: Colors.red, fontSize: 14.0))
-                                  ]))))),
+                                      SizedBox(
+                                          width: 300,
+                                          child: TextFormField(
+                                              validator: (val) => val!.length <
+                                                      6
+                                                  ? 'Enter a password with at least 6 characters'
+                                                  : null,
+                                              obscureText: true,
+                                              decoration:
+                                                  textInputDecoration.copyWith(
+                                                hintText: "Password",
+                                                focusedBorder:
+                                                    const OutlineInputBorder(
+                                                  borderSide: const BorderSide(
+                                                    color: Color.fromARGB(
+                                                        255, 139, 185, 255),
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                              ),
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  password = value;
+                                                });
+                                              })),
+                                      Align(
+                                          alignment: Alignment.topRight,
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                  context, '/reset');
+                                            },
+                                            child: const Text(
+                                              "Forgot Password?",
+                                              style: TextStyle(fontSize: 17),
+                                            ),
+                                          )),
+                                      const SizedBox(
+                                        height: 30,
+                                      ),
+                                      SizedBox(
+                                        width: 200,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                const Color.fromARGB(
+                                                    255, 139, 185, 255),
+                                          ),
+                                          child: const Text(
+                                            "Sign In",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.white),
+                                          ),
+                                          onPressed: () async {
+                                            if (_formKey.currentState!
+                                                .validate()) {
+                                              setState(() => loading = true);
+                                              dynamic result = await _auth
+                                                  .signInWithEmailAndPassword(
+                                                      email, password);
+                                              if (result == null) {
+                                                setState(() {
+                                                  error =
+                                                      'Could not sign in with those credentials';
+                                                  loading = false;
+                                                });
+                                              }
+                                              Wrapper.currentIndex = 0;
+                                            }
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 12.0,
+                                      ),
+                                      Text(error,
+                                          style: const TextStyle(
+                                              color: Colors.red,
+                                              fontSize: 14.0))
+                                    ]))))),
+              ),
             ));
   }
 }
