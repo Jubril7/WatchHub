@@ -12,7 +12,7 @@ class _FaqState extends State<Faq> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(232, 255, 255, 255),
+      backgroundColor: Color.fromARGB(255, 253, 249, 246),
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here

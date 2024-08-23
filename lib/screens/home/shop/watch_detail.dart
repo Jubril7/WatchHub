@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:full_screen_image/full_screen_image.dart';
 import 'package:watch_hub/models/watch.dart';
@@ -62,7 +61,7 @@ class _WatchDetailState extends State<WatchDetail> {
     print("watch sort $watchSort");
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 253, 249, 246),
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
@@ -71,7 +70,7 @@ class _WatchDetailState extends State<WatchDetail> {
           "Watch Detail",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        backgroundColor: const Color.fromARGB(255, 22, 69, 169),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -144,7 +143,7 @@ class _WatchDetailState extends State<WatchDetail> {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(232, 255, 255, 255),
+                      backgroundColor: Color.fromARGB(255, 253, 249, 246),
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.zero),
                     ),
@@ -171,7 +170,7 @@ class _WatchDetailState extends State<WatchDetail> {
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            const Color.fromARGB(232, 255, 255, 255),
+                            const Color.fromARGB(255, 253, 249, 246),
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.zero)),
                     onPressed: () {
