@@ -21,13 +21,12 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 253, 249, 246),
-      resizeToAvoidBottomInset: false,
+      backgroundColor: const Color.fromARGB(255, 253, 249, 246),
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
         ),
-        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        backgroundColor: const Color.fromARGB(255, 22, 69, 169),
         title: const Text(
           "Edit Profile",
           style: TextStyle(color: Colors.white),
@@ -46,7 +45,7 @@ class _EditProfileState extends State<EditProfile> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                           validator: (value) =>
                               value!.isEmpty ? "Enter A Name" : null,
                           onChanged: (value) => setState(() {
@@ -68,7 +67,7 @@ class _EditProfileState extends State<EditProfile> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                           validator: (value) =>
                               value!.isEmpty ? "Enter A Phone Number" : null,
                           onChanged: (value) => setState(() {
@@ -90,7 +89,7 @@ class _EditProfileState extends State<EditProfile> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
-                          style: TextStyle(fontSize: 20),
+                          style: const TextStyle(fontSize: 20),
                           validator: (value) =>
                               value!.isEmpty ? "Enter An Address" : null,
                           onChanged: (value) => setState(() {
@@ -115,7 +114,7 @@ class _EditProfileState extends State<EditProfile> {
                 width: 200,
                 child: TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 139, 185, 255),
+                    backgroundColor: const Color.fromARGB(255, 139, 185, 255),
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
