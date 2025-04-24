@@ -46,9 +46,10 @@ class _CartListState extends State<CartList> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Image.network(
-                            height: 300,
-                            'https://firebasestorage.googleapis.com/v0/b/watch-hub-6810e.appspot.com/o/not-found-removebg-preview.png?alt=media&token=c98edcd3-07e1-4016-b510-a34bdd687fae'),
+                          Image.asset(
+                                'assets/images/not-found.jpg',
+                                height: 300,
+                              ),
                         const Text(
                           "Cart Is Empty",
                           style: TextStyle(fontSize: 30.0),
@@ -162,13 +163,14 @@ class _CartListState extends State<CartList> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: FutureBuilder(
                               future: Provider.of<DatabaseService>(context)
                                   .updateTotalPrice(),
-                              builder: (context, data) {
+                              builder: (context, snapshot) {
+                                final total = snapshot.data ?? 0.0;
                                 return Text(
-                                  '\$${data.data.toString()}',
+                                  '\$${total.toStringAsFixed(2)}',
                                   style: const TextStyle(
                                       fontSize: 25, color: Colors.white),
                                 );

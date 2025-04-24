@@ -226,7 +226,7 @@ class _RegisterState extends State<Register> {
                                         width: 200,
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                            backgroundColor: Color.fromARGB(
+                                            backgroundColor: const Color.fromARGB(
                                                 255, 139, 185, 255),
                                           ),
                                           child: const Text(

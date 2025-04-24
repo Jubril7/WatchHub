@@ -99,7 +99,7 @@ class _WatchDetailState extends State<WatchDetail> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 0.0),
+              padding: const EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 0.0),
               child: SizedBox(
                 width: double.maxFinite,
                 child: Text(watch.brand!,
@@ -292,7 +292,7 @@ class _WatchDetailState extends State<WatchDetail> {
                                 watch.brand!,
                                 1,
                                 int.parse(watch.price!),
-                                watch.images![0]!);
+                                watch.images![0]);
                             showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(
@@ -321,7 +321,7 @@ class _WatchDetailState extends State<WatchDetail> {
                                 watch.brand!,
                                 1,
                                 int.parse(watch.price!),
-                                watch.images![0]!);
+                                watch.images![0]);
                             showDialog(
                                 context: context,
                                 builder: (context) => AlertDialog(

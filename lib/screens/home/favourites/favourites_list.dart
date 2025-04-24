@@ -32,9 +32,10 @@ class _FavouritesListState extends State<FavouritesList> {
             child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.network(
+              Image.asset(
+                'assets/images/not-found.jpg',
                   height: 300,
-                  'https://firebasestorage.googleapis.com/v0/b/watch-hub-6810e.appspot.com/o/not-found-removebg-preview.png?alt=media&token=c98edcd3-07e1-4016-b510-a34bdd687fae'),
+                ),
               const Text(
                 "No Favourite Watches",
                 style: TextStyle(fontSize: 30.0),

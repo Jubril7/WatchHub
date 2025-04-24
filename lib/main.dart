@@ -25,13 +25,13 @@ class NavigationKey {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //IF BLANK SCREEN DISPLAYS COMMENT THE INITIALIZE FIREBASE STATEMENT, RUN THE APP AND LET THE APP SHOW ERROR THEN UNCOMMENT AND RUN AGAIN
   await Firebase.initializeApp(
     options: const FirebaseOptions(
-        apiKey: "AIzaSyDl6sev6AC1oz893_BuTNNWP5cE2tAE1F4",
-        appId: "1:416592857912:android:6f9046a88cdfe2ea8d8fcd",
-        messagingSenderId: "416592857912",
-        projectId: "watch-hub-6810e"),
+        apiKey: "AIzaSyDc_HywtM_Jh7tzr-4NxkI2PmglHzw9RkI",
+        appId: "1:87695584694:web:f3669e0ef6978eaf58a517",
+        messagingSenderId: "87695584694",
+        projectId: "watchhub-d41f0"
+        ),
   );
   runApp(MainApp());
 }

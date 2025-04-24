@@ -19,7 +19,7 @@ class _FavouritesProviderState extends State<FavouritesProvider> {
       initialData: const [],
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 22, 69, 169),
+          backgroundColor: const Color.fromARGB(255, 22, 69, 169),
           iconTheme: const IconThemeData(
             color: Colors.white, //change your color here
           ),
@@ -28,8 +28,8 @@ class _FavouritesProviderState extends State<FavouritesProvider> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 253, 249, 246),
-        body: FavouritesList(),
+        backgroundColor:const Color.fromARGB(255, 253, 249, 246),
+        body: const FavouritesList(),
       ),
     );
   }

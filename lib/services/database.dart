@@ -18,7 +18,7 @@ class DatabaseService extends ChangeNotifier {
       FirebaseFirestore.instance.collection("Users");
 
   final CollectionReference watch_list =
-      FirebaseFirestore.instance.collection("watch_hub");
+      FirebaseFirestore.instance.collection("watch");
 
   final DocumentReference<Map<String, dynamic>> cart =
       FirebaseFirestore.instance.collection("Cart").doc(user!.uid);
@@ -315,7 +315,7 @@ class DatabaseService extends ChangeNotifier {
         .get();
 
     DocumentReference watch_item =
-        await FirebaseFirestore.instance.collection("watch_hub").doc(docId);
+        await FirebaseFirestore.instance.collection("watch").doc(docId);
 
     watch_item.update({
       "reviews": FieldValue.arrayUnion([
@@ -331,19 +331,20 @@ class DatabaseService extends ChangeNotifier {
 
   List<Watch> _watchListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
+    final data = doc.data() as Map<String, dynamic>;
       return Watch(
-          id: doc['id'] ?? '',
-          brand: doc['brand'] ?? '',
-          model: doc['model'] ?? '',
-          type: doc['type'] ?? '',
-          popularity: doc['popularity'] ?? 0,
-          price: doc['price'].toString(),
-          description: doc['description'] ?? '',
-          resistance: doc['resistance'] ?? '',
-          material: doc['material'] ?? '',
-          color: doc['color'] ?? '',
-          images: doc['images'] ?? [],
-          reviews: doc['reviews'] ?? []);
+          id: data['id'] ?? '',
+          brand: data['brand'] ?? '',
+          model: data['model'] ?? '',
+          type: data['type'] ?? '',
+          popularity: data['popularity'] ?? 0,
+          price: data['price'].toString(),
+          description: data['description'] ?? '',
+          resistance: data['resistance'] ?? '',
+          material: data['material'] ?? '',
+          color: data['color'] ?? '',
+          images: data['images'] ?? [],
+          reviews: data['reviews'] ?? []);
     }).toList();
   }
 
