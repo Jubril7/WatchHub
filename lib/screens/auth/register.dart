@@ -27,10 +27,10 @@ class _RegisterState extends State<Register> {
     return loading
         ? const Loading()
         : Scaffold(
-            backgroundColor: Color.fromARGB(255, 253, 249, 246),
+            backgroundColor: const Color.fromARGB(255, 253, 249, 246),
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              backgroundColor: Color.fromARGB(255, 22, 69, 169),
+              backgroundColor: const Color.fromARGB(255, 22, 69, 169),
               elevation: 0.0,
               title: const Text(
                 "Sign Up to Watch Hub",
@@ -58,13 +58,13 @@ class _RegisterState extends State<Register> {
                     child: Form(
                         key: _formKey,
                         child: Center(
-                            child: Container(
+                            child: SizedBox(
                                 width: 350,
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         width: 60,
                                         height: 60,
                                         child: const Icon(
@@ -98,7 +98,7 @@ class _RegisterState extends State<Register> {
                                               hintText: "Full Name",
                                               focusedBorder:
                                                   const OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color.fromARGB(
                                                       255, 139, 185, 255),
                                                   width: 2,
@@ -125,7 +125,7 @@ class _RegisterState extends State<Register> {
                                               hintText: "Email",
                                               focusedBorder:
                                                   const OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color.fromARGB(
                                                       255, 139, 185, 255),
                                                   width: 2,
@@ -152,7 +152,7 @@ class _RegisterState extends State<Register> {
                                               hintText: "Address",
                                               focusedBorder:
                                                   const OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color.fromARGB(
                                                       255, 139, 185, 255),
                                                   width: 2,
@@ -179,7 +179,7 @@ class _RegisterState extends State<Register> {
                                               hintText: "Phone Number",
                                               focusedBorder:
                                                   const OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color.fromARGB(
                                                       255, 139, 185, 255),
                                                   width: 2,
@@ -204,7 +204,7 @@ class _RegisterState extends State<Register> {
                                                       focusedBorder:
                                                           const OutlineInputBorder(
                                                         borderSide:
-                                                            const BorderSide(
+                                                            BorderSide(
                                                           color: Color.fromARGB(
                                                               255,
                                                               139,
@@ -213,7 +213,7 @@ class _RegisterState extends State<Register> {
                                                           width: 2,
                                                         ),
                                                       ),
-                                                      errorStyle: TextStyle()),
+                                                      errorStyle: const TextStyle()),
                                               onChanged: (value) {
                                                 setState(() {
                                                   password = value;

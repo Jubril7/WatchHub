@@ -26,7 +26,7 @@ class _CartListState extends State<CartList> {
         stream: DatabaseService().carts,
         builder: (context, snapshot) {
           var cart = snapshot.data;
-          print("provider answer is${total}");
+          print("provider answer is$total");
           return Scaffold(
             backgroundColor: const Color.fromARGB(255, 253, 249, 246),
             appBar: AppBar(
@@ -74,13 +74,13 @@ class _CartListState extends State<CartList> {
                                     child: Image.network(cart[index].image!)),
                                 title: Text(
                                   cart[index].model!,
-                                  style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 20),
                                 ),
                                 subtitle: Row(
                                   children: [
                                     Text(
-                                      "\$${cart[index].price.toString()!}",
-                                      style: TextStyle(fontSize: 20),
+                                      "\$${cart[index].price.toString()}",
+                                      style: const TextStyle(fontSize: 20),
                                     ),
                                     IconButton(
                                       onPressed: () {
@@ -118,12 +118,12 @@ class _CartListState extends State<CartList> {
                                                     cart[index].model!);
                                           }
                                         },
-                                        icon: Icon(Icons.remove),
+                                        icon: const Icon(Icons.remove),
                                       ),
 
                                       Text(
                                         cart[index].quantity.toString(),
-                                        style: TextStyle(fontSize: 20),
+                                        style: const TextStyle(fontSize: 20),
                                       ),
                                       //
 
@@ -134,7 +134,7 @@ class _CartListState extends State<CartList> {
                                               .updateQuantity(
                                                   index, 1, cart[index].model!);
                                         },
-                                        icon: Icon(Icons.add),
+                                        icon: const Icon(Icons.add),
                                       ),
                                     ],
                                   ),
@@ -147,7 +147,7 @@ class _CartListState extends State<CartList> {
             bottomSheet: Container(
                 height: 130,
                 width: MediaQuery.sizeOf(context).width,
-                color: Color.fromARGB(255, 22, 69, 169),
+                color: const Color.fromARGB(255, 22, 69, 169),
                 child: Column(
                   children: <Widget>[
                     Row(
@@ -184,7 +184,7 @@ class _CartListState extends State<CartList> {
                         SizedBox(
                           width: 200,
                           child: FloatingActionButton(
-                            backgroundColor: Color.fromARGB(255, 139, 185, 255),
+                            backgroundColor: const Color.fromARGB(255, 139, 185, 255),
                             onPressed: () {
                               DatabaseService().createOrder();
                               showDialog(
@@ -192,7 +192,7 @@ class _CartListState extends State<CartList> {
                                   builder: (context) => AlertDialog(
                                         title: const Text("Watch Hub"),
                                         content: const Text("Order Confirmed"),
-                                        contentPadding: EdgeInsets.all(20.0),
+                                        contentPadding: const EdgeInsets.all(20.0),
                                         actions: [
                                           TextButton(
                                               onPressed: () {

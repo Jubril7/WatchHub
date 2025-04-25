@@ -111,7 +111,7 @@ class _ProfileListState extends State<ProfileList> {
                   height: 30,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
+                      color: const Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
                   child: const Icon(
                     Icons.favorite,
                     color: Colors.white,
@@ -142,7 +142,7 @@ class _ProfileListState extends State<ProfileList> {
                   height: 30,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
+                      color: const Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
                   child: const Icon(Icons.question_answer, color: Colors.white),
                 ),
                 title: const Text(
@@ -170,7 +170,7 @@ class _ProfileListState extends State<ProfileList> {
                   height: 30,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
-                      color: Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
+                      color: const Color.fromARGB(255, 22, 69, 169).withOpacity(0.5)),
                   child: const Icon(Icons.headset_mic, color: Colors.white),
                 ),
                 title: const Text(
@@ -207,7 +207,7 @@ class _ProfileListState extends State<ProfileList> {
           fixedColor: Colors.white,
           showUnselectedLabels: false,
           currentIndex: Wrapper.currentIndex,
-          backgroundColor: Color.fromARGB(255, 22, 69, 169),
+          backgroundColor: const Color.fromARGB(255, 22, 69, 169),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               backgroundColor: Colors.lightBlue,

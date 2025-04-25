@@ -19,7 +19,7 @@ class _OrderProviderState extends State<OrderProvider> {
       initialData: const [],
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 22, 69, 169),
+          backgroundColor: const Color.fromARGB(255, 22, 69, 169),
           iconTheme: const IconThemeData(
             color: Colors.white, //change your color here
           ),
@@ -28,8 +28,8 @@ class _OrderProviderState extends State<OrderProvider> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 253, 249, 246),
-        body: OrderList(),
+        backgroundColor: const Color.fromARGB(255, 253, 249, 246),
+        body: const OrderList(),
       ),
     );
   }

@@ -106,7 +106,7 @@ class _FavouritesListState extends State<FavouritesList> {
                                                 content:
                                                     const Text("Added To Cart"),
                                                 contentPadding:
-                                                    EdgeInsets.all(20.0),
+                                                    const EdgeInsets.all(20.0),
                                                 actions: [
                                                   TextButton(
                                                       onPressed: () {
@@ -121,7 +121,7 @@ class _FavouritesListState extends State<FavouritesList> {
                                     },
                                     style: TextButton.styleFrom(
                                         backgroundColor:
-                                            Color.fromARGB(255, 139, 185, 255),
+                                            const Color.fromARGB(255, 139, 185, 255),
                                         shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(20)))),
@@ -136,7 +136,7 @@ class _FavouritesListState extends State<FavouritesList> {
                           //   style: const TextStyle(fontSize: 20),
                           // ),
                           )),
-                  Divider()
+                  const Divider()
                 ],
               );
             });

@@ -25,7 +25,7 @@ class _ResetState extends State<Reset> {
           "Reset Password",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        backgroundColor: const Color.fromARGB(255, 22, 69, 169),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -44,7 +44,7 @@ class _ResetState extends State<Reset> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      style: TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 20),
                       controller: input,
                       validator: (value) =>
                           value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -64,10 +64,10 @@ class _ResetState extends State<Reset> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Container(
+          SizedBox(
             width: 140,
             child: ElevatedButton(
                 onPressed: () {
@@ -78,7 +78,7 @@ class _ResetState extends State<Reset> {
                         builder: (context) => AlertDialog(
                               title: const Text("Watch Hub"),
                               content: const Text("Password Reset Email Sent"),
-                              contentPadding: EdgeInsets.all(20.0),
+                              contentPadding: const EdgeInsets.all(20.0),
                               actions: [
                                 TextButton(
                                     onPressed: () {

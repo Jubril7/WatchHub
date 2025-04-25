@@ -47,13 +47,13 @@ class WatchListState extends State<WatchList> {
     print("clicked");
 
     if (watches.isEmpty) {
-      return Center(
+      return const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // Image.asset(
             //     'assets/not-found.png'),
-            const Text(
+            Text(
               "Item Not Found",
               style: TextStyle(fontSize: 30.0),
             )

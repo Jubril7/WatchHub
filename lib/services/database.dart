@@ -38,7 +38,7 @@ class DatabaseService extends ChangeNotifier {
         .get();
 
     List item = document.data()!['cart'];
-    print("item list is ${item}");
+    print("item list is $item");
     List totalPriceList = [];
 
     for (var i in item) {
@@ -85,7 +85,7 @@ class DatabaseService extends ChangeNotifier {
         .doc(user!.uid)
         .get();
     DocumentReference<Map<String, dynamic>> document =
-        await FirebaseFirestore.instance.collection("Orders").doc(user.uid);
+        FirebaseFirestore.instance.collection("Orders").doc(user.uid);
     List docs = [];
     List docs1 = [];
     docs.add(getCart.data()!);
@@ -232,7 +232,7 @@ class DatabaseService extends ChangeNotifier {
         .get();
 
     List item = document.data()!['cart'];
-    print("item list is ${item}");
+    print("item list is $item");
     for (var i = 0; i < item.length; i++) {
       List modelList = [];
       modelList.add(item[i]['model']);
@@ -264,7 +264,7 @@ class DatabaseService extends ChangeNotifier {
         .get();
 
     List item = document.data()!['cart'];
-    print("item list is ${item}");
+    print("item list is $item");
     for (var i = 0; i < item.length; i++) {
       List modelList = [];
       modelList.add(item[i]['model']);
@@ -314,10 +314,10 @@ class DatabaseService extends ChangeNotifier {
         .doc(user!.uid)
         .get();
 
-    DocumentReference watch_item =
-        await FirebaseFirestore.instance.collection("watch").doc(docId);
+    DocumentReference watchItem =
+        FirebaseFirestore.instance.collection("watch").doc(docId);
 
-    watch_item.update({
+    watchItem.update({
       "reviews": FieldValue.arrayUnion([
         {
           "name": userName.data()!['fullname'],

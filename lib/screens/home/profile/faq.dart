@@ -12,7 +12,7 @@ class _FaqState extends State<Faq> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 253, 249, 246),
+      backgroundColor: const Color.fromARGB(255, 253, 249, 246),
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
@@ -21,16 +21,16 @@ class _FaqState extends State<Faq> {
           "FAQ",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        backgroundColor: const Color.fromARGB(255, 22, 69, 169),
       ),
       body: SizedBox(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Accordion(
-                  headerBorderColor: Color.fromARGB(255, 22, 69, 169),
-                  contentBorderColor: Color.fromARGB(255, 22, 69, 169),
-                  headerBackgroundColor: Color.fromARGB(255, 22, 69, 169),
+                  headerBorderColor: const Color.fromARGB(255, 22, 69, 169),
+                  contentBorderColor: const Color.fromARGB(255, 22, 69, 169),
+                  headerBackgroundColor: const Color.fromARGB(255, 22, 69, 169),
                   headerPadding: const EdgeInsets.all(20),
                   children: <AccordionSection>[
                     AccordionSection(

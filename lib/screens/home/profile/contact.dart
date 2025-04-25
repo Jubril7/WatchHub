@@ -11,12 +11,12 @@ class _ContactState extends State<Contact> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 253, 249, 246),
+      backgroundColor: const Color.fromARGB(255, 253, 249, 246),
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
         ),
-        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        backgroundColor: const Color.fromARGB(255, 22, 69, 169),
         title: const Text(
           "Contact",
           style: TextStyle(color: Colors.white),
@@ -39,7 +39,7 @@ class _ContactState extends State<Contact> {
                   border: InputBorder.none),
             ),
           ),
-          Container(
+          SizedBox(
             width: MediaQuery.sizeOf(context).width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -47,7 +47,7 @@ class _ContactState extends State<Contact> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                  child: SizedBox(
                     width: 200,
                     child: FloatingActionButton(
                       onPressed: () {
@@ -57,7 +57,7 @@ class _ContactState extends State<Contact> {
                                   title: const Text("Message Sent!"),
                                   content: const Text(
                                       "We will get back to you shortly"),
-                                  contentPadding: EdgeInsets.all(20.0),
+                                  contentPadding: const EdgeInsets.all(20.0),
                                   actions: [
                                     TextButton(
                                         onPressed: () {
@@ -67,7 +67,7 @@ class _ContactState extends State<Contact> {
                                   ],
                                 ));
                       },
-                      child: Text("Send Message"),
+                      child: const Text("Send Message"),
                     ),
                   ),
                 ),

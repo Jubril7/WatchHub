@@ -20,7 +20,7 @@ class Admin extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
         ),
-        backgroundColor: Color.fromARGB(255, 22, 69, 169),
+        backgroundColor: const Color.fromARGB(255, 22, 69, 169),
         actions: <Widget>[
           TextButton.icon(
             onPressed: () async {
@@ -43,7 +43,7 @@ class Admin extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
+                child: SizedBox(
                   width: 200,
                   child: TextButton(
                     style: TextButton.styleFrom(backgroundColor: Colors.blue),
@@ -59,7 +59,7 @@ class Admin extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
+                child: SizedBox(
                   width: 200,
                   child: TextButton(
                     style: TextButton.styleFrom(backgroundColor: Colors.blue),

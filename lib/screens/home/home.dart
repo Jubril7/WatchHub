@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:watch_hub/models/user.dart';
 import 'package:watch_hub/screens/wrapper.dart';
-import 'package:watch_hub/services/auth.dart';
 import 'package:watch_hub/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:watch_hub/screens/home/shop/watch_list.dart';

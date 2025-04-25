@@ -74,7 +74,7 @@ class _OrderListState extends State<OrderList> {
                       ),
                     ),
                   )),
-                  Divider()
+                  const Divider()
                 ],
               );
             });

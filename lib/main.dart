@@ -37,7 +37,7 @@ void main() async {
 }
 
 class MainApp extends StatelessWidget {
-  MainApp({super.key});
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +50,8 @@ class MainApp extends StatelessWidget {
             navigatorKey: NavigationKey.navKey,
             debugShowCheckedModeBanner: false,
             routes: {
-              '/home': (context) => Home(),
-              '/reset': (context) => Reset(),
+              '/home': (context) => const Home(),
+              '/reset': (context) => const Reset(),
               '/profile_list': (context) => const ProfileList(),
               '/watch_details': (context) => const WatchDetail(),
               '/cart': (context) => const CartList(),

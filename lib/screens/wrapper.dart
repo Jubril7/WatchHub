@@ -6,7 +6,7 @@ import 'package:watch_hub/screens/auth/authenticate.dart';
 import 'package:watch_hub/screens/home/home.dart';
 
 class Wrapper extends StatefulWidget {
-  Wrapper({super.key});
+  const Wrapper({super.key});
   static int currentIndex = 0;
   @override
   State<Wrapper> createState() => _WrapperState();
@@ -26,7 +26,7 @@ class _WrapperState extends State<Wrapper> {
       return const Authenticate();
     } else {
       return Scaffold(
-        body: user.uid == "1YvNn6g5DxWVabKNNHiVCcIzGPf1" ? Admin() : Home(),
+        body: user.uid == "1YvNn6g5DxWVabKNNHiVCcIzGPf1" ? Admin() : const Home(),
       );
     }
   }

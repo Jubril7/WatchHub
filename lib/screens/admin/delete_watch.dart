@@ -24,7 +24,7 @@ class _DeleteWatchState extends State<DeleteWatch> {
             iconTheme: const IconThemeData(
               color: Colors.white, //change your color here
             ),
-            backgroundColor: Color.fromARGB(255, 22, 69, 169)),
+            backgroundColor: const Color.fromARGB(255, 22, 69, 169)),
         body: Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -36,7 +36,7 @@ class _DeleteWatchState extends State<DeleteWatch> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    style: TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 20),
                     controller: input,
                     validator: (value) =>
                         value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -57,7 +57,7 @@ class _DeleteWatchState extends State<DeleteWatch> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
+            child: SizedBox(
               width: 200,
               child: TextButton(
                 style: TextButton.styleFrom(backgroundColor: Colors.blue),
@@ -69,7 +69,7 @@ class _DeleteWatchState extends State<DeleteWatch> {
                         builder: (context) => AlertDialog(
                               title: const Text("Watch Hub"),
                               content: const Text("Watch Deleted"),
-                              contentPadding: EdgeInsets.all(20.0),
+                              contentPadding: const EdgeInsets.all(20.0),
                               actions: [
                                 TextButton(
                                     onPressed: () {

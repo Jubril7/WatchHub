@@ -36,7 +36,7 @@ class _AddWatchState extends State<AddWatch> {
           iconTheme: const IconThemeData(
             color: Colors.white, //change your color here
           ),
-          backgroundColor: Color.fromARGB(255, 22, 69, 169)),
+          backgroundColor: const Color.fromARGB(255, 22, 69, 169)),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -48,7 +48,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: modelController,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -70,7 +70,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: brandController,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -92,7 +92,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: colorController,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -114,7 +114,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: materialController,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -136,7 +136,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: popularityController,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -158,7 +158,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: resistanceController,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -180,7 +180,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: priceController,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -202,7 +202,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: descriptionController,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -224,7 +224,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: typeController,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -246,7 +246,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: coverController,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -268,7 +268,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: secondary1Controller,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -290,7 +290,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: secondary2Controller,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -312,7 +312,7 @@ class _AddWatchState extends State<AddWatch> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                         controller: secondary3Controller,
                         validator: (value) =>
                             value!.isEmpty ? "Empty Fields Not Allowed" : null,
@@ -370,7 +370,7 @@ class _AddWatchState extends State<AddWatch> {
                         builder: (context) => AlertDialog(
                               title: const Text("Watch Hub"),
                               content: const Text("Watch Added"),
-                              contentPadding: EdgeInsets.all(20.0),
+                              contentPadding: const EdgeInsets.all(20.0),
                               actions: [
                                 TextButton(
                                     onPressed: () {

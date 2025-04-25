@@ -39,7 +39,6 @@ class _WatchDetailState extends State<WatchDetail> {
     DateTime dateOptions = DateTime(now.year, now.month, now.day);
     final date = dateOptions.toString().replaceAll("00:00:00.000", "");
     print("watch is $watch");
-    ;
     // final cart = Provider.of<List<Cart>>(context);
     List? watchSort = watch.reviews;
     ("current is from beginning");
@@ -61,7 +60,7 @@ class _WatchDetailState extends State<WatchDetail> {
     print("watch sort $watchSort");
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 253, 249, 246),
+      backgroundColor: const Color.fromARGB(255, 253, 249, 246),
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: Colors.white, //change your color here
@@ -143,7 +142,7 @@ class _WatchDetailState extends State<WatchDetail> {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 253, 249, 246),
+                      backgroundColor: const Color.fromARGB(255, 253, 249, 246),
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.zero),
                     ),
@@ -164,7 +163,7 @@ class _WatchDetailState extends State<WatchDetail> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     itemQuantity.toString(),
-                    style: TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ),
                 ElevatedButton(
@@ -204,7 +203,7 @@ class _WatchDetailState extends State<WatchDetail> {
                     future: DatabaseService().getCartBool(watch.model!),
                     builder: (context, snapshot) {
                       print("snapshot data bool is ${snapshot.data}");
-                      return Container(
+                      return SizedBox(
                           width: 240,
                           child: snapshot.data == true
                               ? Padding(
@@ -249,7 +248,7 @@ class _WatchDetailState extends State<WatchDetail> {
                                     ),
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:
-                                            Color.fromARGB(255, 139, 185, 255),
+                                            const Color.fromARGB(255, 139, 185, 255),
                                         shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.zero)),
                                     onPressed: () async {
@@ -267,7 +266,7 @@ class _WatchDetailState extends State<WatchDetail> {
                                                 content:
                                                     const Text("Added To Cart"),
                                                 contentPadding:
-                                                    EdgeInsets.all(20.0),
+                                                    const EdgeInsets.all(20.0),
                                                 actions: [
                                                   TextButton(
                                                       onPressed: () {
@@ -299,7 +298,7 @@ class _WatchDetailState extends State<WatchDetail> {
                                       title: const Text("Watch Hub"),
                                       content:
                                           const Text("Removed From Wishlist"),
-                                      contentPadding: EdgeInsets.all(20.0),
+                                      contentPadding: const EdgeInsets.all(20.0),
                                       actions: [
                                         TextButton(
                                             onPressed: () async {
@@ -327,7 +326,7 @@ class _WatchDetailState extends State<WatchDetail> {
                                 builder: (context) => AlertDialog(
                                       title: const Text("Watch Hub"),
                                       content: const Text("Added To Wishlist"),
-                                      contentPadding: EdgeInsets.all(20.0),
+                                      contentPadding: const EdgeInsets.all(20.0),
                                       actions: [
                                         TextButton(
                                             onPressed: () async {
@@ -371,7 +370,7 @@ class _WatchDetailState extends State<WatchDetail> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       watch.description!,
-                      style: TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 20),
                     ),
                   )
                 ],
@@ -397,7 +396,7 @@ class _WatchDetailState extends State<WatchDetail> {
                     ),
                   )),
             ),
-            Container(
+            SizedBox(
               width: double.maxFinite,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -407,35 +406,35 @@ class _WatchDetailState extends State<WatchDetail> {
                       width: double.maxFinite,
                       child: Text(
                         "Model - ${watch.model!}",
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
                     SizedBox(
                       width: double.maxFinite,
                       child: Text(
                         "Type - ${watch.type!}",
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
                     SizedBox(
                       width: double.maxFinite,
                       child: Text(
                         "Water Resistance - ${watch.resistance!}",
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
                     SizedBox(
                       width: double.maxFinite,
                       child: Text(
                         "Material - ${watch.material!}",
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
                     SizedBox(
                       width: double.maxFinite,
                       child: Text(
                         "Color - ${watch.color!}",
-                        style: TextStyle(fontSize: 20),
+                        style: const TextStyle(fontSize: 20),
                       ),
                     ),
                   ],
@@ -464,7 +463,7 @@ class _WatchDetailState extends State<WatchDetail> {
             ),
             DropdownMenu(
               width: 200,
-              label: Text("Date"),
+              label: const Text("Date"),
               dropdownMenuEntries: <DropdownMenuEntry>[
                 DropdownMenuEntry(
                     value: ReviewSort.sortOptions[1], label: 'Sort By Newest'),
@@ -537,9 +536,9 @@ class _WatchDetailState extends State<WatchDetail> {
               child: Column(
                 children: [
                   Card(
-                      color: Color.fromARGB(255, 226, 226, 226),
+                      color: const Color.fromARGB(255, 226, 226, 226),
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
                           validator: (val) => val!.isEmpty
                               ? 'Please Enter A Review Before Sending'
@@ -591,7 +590,7 @@ class _WatchDetailState extends State<WatchDetail> {
                                 builder: (context) => AlertDialog(
                                       title: const Text("Watch Hub"),
                                       content: const Text("Review Sent"),
-                                      contentPadding: EdgeInsets.all(20.0),
+                                      contentPadding: const EdgeInsets.all(20.0),
                                       actions: [
                                         TextButton(
                                             onPressed: () async {

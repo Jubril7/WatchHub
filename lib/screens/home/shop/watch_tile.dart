@@ -45,7 +45,7 @@ class _WatchTileState extends State<WatchTile> {
                   ),
                   Text(
                     widget.watch!.model!,
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
                   Text(
                     '\$${widget.watch!.price!}',

@@ -25,12 +25,12 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return loading
-        ? Loading()
+        ? const Loading()
         : Scaffold(
-            backgroundColor: Color.fromARGB(255, 253, 249, 246),
+            backgroundColor: const Color.fromARGB(255, 253, 249, 246),
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              backgroundColor: Color.fromARGB(255, 22, 69, 169),
+              backgroundColor: const Color.fromARGB(255, 22, 69, 169),
               elevation: 0.0,
               title: const Text("Sign in to Watch Hub",
                   style: TextStyle(color: Colors.white)),
@@ -55,14 +55,14 @@ class _SignInState extends State<SignIn> {
                     child: Form(
                         key: _formKey,
                         child: Center(
-                            child: Container(
+                            child: SizedBox(
                                 width: 350,
                                 height: 500,
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         width: 60,
                                         height: 60,
                                         child: const Icon(
@@ -96,7 +96,7 @@ class _SignInState extends State<SignIn> {
                                               hintText: "Email",
                                               focusedBorder:
                                                   const OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color.fromARGB(
                                                       255, 139, 185, 255),
                                                   width: 2,
@@ -120,7 +120,7 @@ class _SignInState extends State<SignIn> {
                                                 hintText: "Password",
                                                 focusedBorder:
                                                     const OutlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color.fromARGB(
                                                         255, 139, 185, 255),
                                                     width: 2,
